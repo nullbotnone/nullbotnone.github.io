@@ -46,6 +46,8 @@
   click(document.querySelector('.chip[data-cat="own"]'));
   ok("own filter shows three", n() === 3, "got " + n());
   ok("own cards keep relative urls", document.querySelector("#results .card").getAttribute("href") === "/messiah-land-map/");
+  ok("every card opens a new tab",
+     Array.from(document.querySelectorAll("#results .card")).every((a) => a.target === "_blank" && /noopener/.test(a.rel)));
   click(document.querySelector('.chip[data-cat="worship"]'));
   ok("worship filter", n() === 5, "got " + n());
   click(document.querySelector('.chip[data-cat="all"]'));

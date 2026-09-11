@@ -392,7 +392,7 @@ function cardHtml(item) {
   const alt = item.alt && item.alt[state.lang] ? item.alt[state.lang] : "";
   const host = external ? new URL(item.url).hostname.replace(/^www\./, "") : "";
   return `
-    <a class="card" href="${item.url}"${external ? ' target="_blank" rel="noopener"' : ""} data-key="${item.url}">
+    <a class="card" href="${item.url}" target="_blank" rel="noopener" data-key="${item.url}">
       <span class="name">${item.name}${alt ? `<span class="zh-alt">${alt}</span>` : ""}${external ? '<span class="ext">↗</span>' : ""}</span>
       <span class="desc">${item.desc[state.lang]}</span>
       ${host ? `<span class="host">${host}</span>` : ""}
