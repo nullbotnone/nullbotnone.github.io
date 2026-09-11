@@ -1,83 +1,34 @@
-/* slashai.app — a front door for the three in-house tools plus the outside
-   sites worth keeping a shortcut to. No framework, no build step: the whole
-   thing is this file, rendered into index.html at load. */
+/* slashai.app -- the front door for the three tools built here. Static: no
+   framework, no build step, no dependencies. */
 
 const LANGS = ["zh", "tw", "en"];
 
 const UI = {
   zh: {
     langName: "简", htmlLang: "zh-CN",
-    tagline: "圣经地图、原文工具与敬拜资源，收在一个地方。",
-    herosub: "三个自制的开源工具，加上三十来个用得上的外部站点。全部在浏览器里打开，不需要登录这个页面。",
-    jumpLabel: "快速查经文",
-    jumpPlaceholder: "约 3:16、诗篇 23、John 3:16",
-    jumpGo: "打开",
-    jumpHint: "交给 Bible Gateway 解析，中英文书卷名都认得。",
-    searchPlaceholder: "搜索工具、网站、用途…… 按 / 聚焦",
-    all: "全部",
-    favs: "常用",
-    own: "本站工具",
-    empty: "没有匹配的条目。换个词试试，或者清掉筛选。",
-    shuffle: "换一节",
-    copy: "复制",
-    copied: "已复制",
-    open: "读上下文",
-    footnote: "经文为和合本与 KJV，均属公有领域。外部链接与本站无关，仅作指路。",
-    suggest: "建议新增站点",
+    tagline: "三个为教会做的开源工具。",
+    herosub: "两张圣经地图和一个歌词投影工具，都在浏览器里直接打开，不需要账号。",
+    shuffle: "换一节", copy: "复制", copied: "已复制", open: "读上下文",
+    footnote: "经文为和合本与 KJV，均属公有领域。三个项目的源码都在 GitHub 上。",
     themeLabel: "切换主题",
   },
   tw: {
     langName: "繁", htmlLang: "zh-TW",
-    tagline: "聖經地圖、原文工具與敬拜資源，收在一個地方。",
-    herosub: "三個自製的開源工具，加上三十來個用得上的外部站點。全部在瀏覽器裡打開，不需要登入這個頁面。",
-    jumpLabel: "快速查經文",
-    jumpPlaceholder: "約 3:16、詩篇 23、John 3:16",
-    jumpGo: "開啟",
-    jumpHint: "交給 Bible Gateway 解析，中英文書卷名都認得。",
-    searchPlaceholder: "搜尋工具、網站、用途…… 按 / 聚焦",
-    all: "全部",
-    favs: "常用",
-    own: "本站工具",
-    empty: "沒有符合的條目。換個詞試試，或者清掉篩選。",
-    shuffle: "換一節",
-    copy: "複製",
-    copied: "已複製",
-    open: "讀上下文",
-    footnote: "經文為和合本與 KJV，均屬公有領域。外部連結與本站無關，僅作指路。",
-    suggest: "建議新增站點",
+    tagline: "三個為教會做的開源工具。",
+    herosub: "兩張聖經地圖和一個歌詞投影工具，都在瀏覽器裡直接打開，不需要帳號。",
+    shuffle: "換一節", copy: "複製", copied: "已複製", open: "讀上下文",
+    footnote: "經文為和合本與 KJV，均屬公有領域。三個項目的原始碼都在 GitHub 上。",
     themeLabel: "切換主題",
   },
   en: {
     langName: "EN", htmlLang: "en",
-    tagline: "Bible maps, original-language tools, and worship resources in one place.",
-    herosub: "Three open-source tools built here, plus thirty-odd outside sites worth a shortcut. Everything runs in the browser; this page asks for no login.",
-    jumpLabel: "Jump to a passage",
-    jumpPlaceholder: "John 3:16, Psalm 23, 约 3:16",
-    jumpGo: "Open",
-    jumpHint: "Bible Gateway does the parsing — it reads Chinese and English book names alike.",
-    searchPlaceholder: "Search tools, sites, purposes… press / to focus",
-    all: "All",
-    favs: "Pinned",
-    own: "Built here",
-    empty: "Nothing matches. Try another word, or clear the filter.",
-    shuffle: "Another",
-    copy: "Copy",
-    copied: "Copied",
-    open: "Read in context",
-    footnote: "Verses are CUV and KJV, both public domain. Outside links are unaffiliated — just signposts.",
-    suggest: "Suggest a site",
+    tagline: "Three open-source tools, built for the church.",
+    herosub: "Two Bible maps and a lyric-slide builder. Everything runs in the browser; none of it asks for an account.",
+    shuffle: "Another", copy: "Copy", copied: "Copied", open: "Read in context",
+    footnote: "Verses are CUV and KJV, both public domain. All three projects are open source on GitHub.",
     themeLabel: "Toggle theme",
   },
 };
-
-const CATS = [
-  { id: "read",    zh: "读经",     tw: "讀經",     en: "Read" },
-  { id: "original",zh: "原文",     tw: "原文",     en: "Original languages" },
-  { id: "study",   zh: "查经装备", tw: "查經裝備", en: "Study" },
-  { id: "geo",     zh: "地理历史", tw: "地理歷史", en: "Geography" },
-  { id: "worship", zh: "敬拜诗歌", tw: "敬拜詩歌", en: "Worship" },
-  { id: "media",   zh: "影音广播", tw: "影音廣播", en: "Media" },
-];
 
 /* Verse of the day. CUV and KJV are both public domain, which is the whole
    reason those two translations are the ones sitting in this file. */
@@ -208,107 +159,26 @@ const VERSES = [
     en: "So teach us to number our days, that we may apply our hearts unto wisdom." },
 ];
 
-/* The three tools built here. Paths are relative: these are project Pages
-   sitting under the same domain as this page. */
-const OWN = [
-  { id: "messiah", url: "/messiah-land-map/", name: "Messiah Land Map", alt: { zh: "弥赛亚之地", tw: "彌賽亞之地", en: "" },
-    tags: "map israel galilee terrain 地图 地形 以色列 加利利 福音书",
+/* Paths are relative: these are project Pages under the same domain. */
+const TOOLS = [
+  { url: "/messiah-land-map/", name: "Messiah Land Map",
+    alt: { zh: "弥赛亚之地", tw: "彌賽亞之地", en: "" },
     desc: {
-      zh: "第一世纪以色列的地形图，高程取自实测数据。把福音书的叙事放回它真实的距离和高差里。",
-      tw: "第一世紀以色列的地形圖，高程取自實測資料。把福音書的敘事放回它真實的距離和高差裡。",
-      en: "A relief map of first-century Israel on measured elevation data — the Gospels at their true distances and drops." } },
-  { id: "apostles", url: "/apostles-sea-map/", name: "Apostles Sea Map", alt: { zh: "直到地极", tw: "直到地極", en: "" },
-    tags: "map acts paul journeys rome 地图 使徒行传 保罗 宣教 罗马",
+      zh: "第一世纪以色列的地形图，高程取自实测数据。平移、俯仰，把福音书的叙事放回它真实的距离和高差里。",
+      tw: "第一世紀以色列的地形圖，高程取自實測資料。平移、俯仰，把福音書的敘事放回它真實的距離和高差裡。",
+      en: "A relief map of first-century Israel built on measured elevation data. Pan and tilt the land, and read the Gospels against the distances and drops they happened in." } },
+  { url: "/apostles-sea-map/", name: "Apostles Sea Map",
+    alt: { zh: "直到地极", tw: "直到地極", en: "" },
     desc: {
-      zh: "使徒行传走过的那片海：63 个地点、四段宣教行程，以及公元 50 年前后的罗马行省。",
-      tw: "使徒行傳走過的那片海：63 個地點、四段宣教行程，以及公元 50 年前後的羅馬行省。",
-      en: "The sea Acts moves across: 63 places, four journeys, and the Roman provinces as they stood around AD 50." } },
-  { id: "worship", url: "/worship-wiki/", name: "Worship Wiki", alt: { zh: "敬拜维基", tw: "敬拜維基", en: "" },
-    tags: "lyrics slides ppt pptx keynote pdf 歌词 投影 诗歌 主日 敬拜团",
+      zh: "使徒行传走过的那片海：63 个地点、四段宣教行程画在真实地形上，以及公元 50 年前后的罗马行省。",
+      tw: "使徒行傳走過的那片海：63 個地點、四段宣教行程畫在真實地形上，以及公元 50 年前後的羅馬行省。",
+      en: "The sea the book of Acts moves across: 63 places and four itineraries drawn over real terrain, with the Roman provinces as they stood around AD 50." } },
+  { url: "/worship-wiki/", name: "Worship Wiki",
+    alt: { zh: "敬拜维基", tw: "敬拜維基", en: "" },
     desc: {
-      zh: "歌词投影工具。建立曲库、自动分页、实时预览，导出 PowerPoint、Keynote 和 PDF。",
-      tw: "歌詞投影工具。建立曲庫、自動分頁、即時預覽，匯出 PowerPoint、Keynote 和 PDF。",
-      en: "Lyric slides for worship teams: a shared song library, auto-pagination, live preview, PowerPoint/Keynote/PDF export." } },
-];
-
-/* Outside sites. Every URL here was checked before it went in; if one rots,
-   delete the line rather than leaving a dead card on the page. */
-const LINKS = [
-  // ---- read ----
-  { cat: "read", name: "YouVersion 圣经", url: "https://www.bible.com/", tags: "bible app reading plan 读经 计划 手机",
-    desc: { zh: "最常见的读经 App，几千种译本，读经计划做得最全。", tw: "最常見的讀經 App，幾千種譯本，讀經計劃做得最全。", en: "The ubiquitous Bible app — thousands of versions, the deepest bench of reading plans." } },
-  { cat: "read", name: "Bible Gateway", url: "https://www.biblegateway.com/", tags: "search passage version 经文 搜索 译本 对照",
-    desc: { zh: "按关键词或经节查，多译本并排对照，本页的快速查经文就交给它。", tw: "按關鍵詞或經節查，多譯本並排對照，本頁的快速查經文就交給它。", en: "Search by word or reference, compare versions side by side. The jump box above hands off to it." } },
-  { cat: "read", name: "信望愛聖經工具", url: "https://bible.fhl.net/", tags: "fhl chinese 中文 繁体 和合本 字典",
-    desc: { zh: "华人教会用了二十多年的老站，中文译本、字典、注释都在里面。", tw: "華人教會用了二十多年的老站，中文譯本、字典、註釋都在裡面。", en: "A two-decade institution in Chinese churches: versions, lexicons, and commentary in one place." } },
-  { cat: "read", name: "中文聖經網", url: "https://cnbible.com/", tags: "chinese bible parallel 中英对照 和合本 新译本",
-    desc: { zh: "中英对照读经，和合本、新译本与英文译本并排。", tw: "中英對照讀經，和合本、新譯本與英文譯本並排。", en: "Chinese–English parallel reading: CUV, CNV, and the major English versions in columns." } },
-  { cat: "read", name: "微读圣经", url: "https://wd.bible/", tags: "chinese app reading 中文 读经 笔记",
-    desc: { zh: "中文读经 App 的网页版，笔记和读经计划同步。", tw: "中文讀經 App 的網頁版，筆記和讀經計劃同步。", en: "The web face of a popular Chinese reading app; notes and plans sync across devices." } },
-  { cat: "read", name: "NET Bible", url: "https://netbible.org/", tags: "notes translation footnotes 注释 译注",
-    desc: { zh: "六万条译注是它的真正价值，译者把每个取舍都写出来了。", tw: "六萬條譯註是它的真正價值，譯者把每個取捨都寫出來了。", en: "Its 60,000 translators' notes are the point — every rendering decision, argued in the open." } },
-  { cat: "read", name: "ESV.org", url: "https://www.esv.org/", tags: "esv english reading audio 英文",
-    desc: { zh: "ESV 官方在线版，排版干净，带朗读。", tw: "ESV 官方線上版，排版乾淨，帶朗讀。", en: "The official ESV reader — clean typography, audio, and a usable study layer." } },
-  { cat: "read", name: "eBible", url: "https://ebible.org/", tags: "download offline languages 下载 离线 多语",
-    desc: { zh: "上千种语言的圣经文本，可整本下载离线用。", tw: "上千種語言的聖經文本，可整本下載離線用。", en: "Public-domain and freely licensed Bibles in over a thousand languages, downloadable whole." } },
-
-  // ---- original languages ----
-  { cat: "original", name: "Blue Letter Bible", url: "https://www.blueletterbible.org/", tags: "strongs greek hebrew interlinear 原文 字义 编号",
-    desc: { zh: "Strong 编号查原文字义，逐字对照，免费且没有门槛。", tw: "Strong 編號查原文字義，逐字對照，免費且沒有門檻。", en: "Strong's numbers, interlinears, and lexicons — free, and the gentlest on-ramp to the original text." } },
-  { cat: "original", name: "STEP Bible", url: "https://www.stepbible.org/", tags: "tyndale greek hebrew parallel 原文 剑桥",
-    desc: { zh: "丁道尔研经工具做的，原文与多译本任意组合并排。", tw: "丁道爾研經工具做的，原文與多譯本任意組合並排。", en: "From Tyndale House, Cambridge: stack any combination of originals and versions in parallel columns." } },
-  { cat: "original", name: "Bible Hub", url: "https://biblehub.com/", tags: "interlinear commentary parallel 逐字 注释 汇编",
-    desc: { zh: "逐字对照加历代注释汇编，查一节经文的老注解最快。", tw: "逐字對照加歷代註釋彙編，查一節經文的老註解最快。", en: "Interlinear plus a century of public-domain commentary, aggregated verse by verse." } },
-  { cat: "original", name: "CBOL 原文聖經", url: "https://cbol.fhl.net/", tags: "fhl greek hebrew chinese 原文 中文 信望爱",
-    desc: { zh: "信望愛的原文工具，希腊文希伯来文的中文解析，华人做的少有的好东西。", tw: "信望愛的原文工具，希臘文希伯來文的中文解析，華人做的少有的好東西。", en: "Greek and Hebrew parsing explained in Chinese — rare, and done properly." } },
-  { cat: "original", name: "Sefaria", url: "https://www.sefaria.org/", tags: "hebrew talmud jewish midrash 犹太 希伯来 塔木德",
-    desc: { zh: "犹太教典籍全文库，读旧约背景和第二圣殿时期语境用得上。", tw: "猶太教典籍全文庫，讀舊約背景和第二聖殿時期語境用得上。", en: "The open library of Jewish texts — invaluable for Second Temple background to the Old Testament." } },
-
-  // ---- study ----
-  { cat: "study", name: "BibleProject", url: "https://bibleproject.com/", tags: "video animation theme chinese 视频 主题 动画 中文",
-    desc: { zh: "动画短片讲每卷书的结构和主题，有中文字幕，适合带查经。", tw: "動畫短片講每卷書的結構和主題，有中文字幕，適合帶查經。", en: "Animated shorts on the shape and themes of each book — Chinese subtitles, and good small-group fuel." } },
-  { cat: "study", name: "Enduring Word", url: "https://enduringword.com/", tags: "commentary guzik verse 注释 逐节",
-    desc: { zh: "David Guzik 的逐节注释，全本免费，讲道备课常用。", tw: "David Guzik 的逐節註釋，全本免費，講道備課常用。", en: "David Guzik's verse-by-verse commentary on the whole Bible, free — a sermon-prep workhorse." } },
-  { cat: "study", name: "Third Millennium", url: "https://thirdmill.org/", tags: "seminary course free chinese 神学 课程 免费 中文",
-    desc: { zh: "免费神学课程，有完整中文版，系统神学和释经都齐。", tw: "免費神學課程，有完整中文版，系統神學和釋經都齊。", en: "A full free seminary curriculum, Chinese included — systematics through hermeneutics." } },
-  { cat: "study", name: "CCEL", url: "https://www.ccel.org/", tags: "classics augustine calvin public domain 经典 教父",
-    desc: { zh: "基督教经典电子图书馆，教父到清教徒的著作全文。", tw: "基督教經典電子圖書館，教父到清教徒的著作全文。", en: "The Christian Classics Ethereal Library: the Fathers through the Puritans, full text." } },
-  { cat: "study", name: "中文查經資料", url: "https://www.ccbiblestudy.net/", tags: "chinese study notes 查经 讲章 资料",
-    desc: { zh: "华人教会的查经讲章资料库，按卷按章整理。", tw: "華人教會的查經講章資料庫，按卷按章整理。", en: "A Chinese-church archive of study notes and sermon material, arranged book by book." } },
-  { cat: "study", name: "The Gospel Coalition", url: "https://www.thegospelcoalition.org/", tags: "articles theology reformed 文章 神学",
-    desc: { zh: "福音联盟的文章与书评，看当代教会在想什么。", tw: "福音聯盟的文章與書評，看當代教會在想什麼。", en: "Essays, reviews, and course material — a read on what the contemporary church is arguing about." } },
-  { cat: "study", name: "Desiring God", url: "https://www.desiringgod.org/", tags: "piper sermons devotional 讲道 灵修",
-    desc: { zh: "John Piper 三十多年的讲道与文章，全部免费。", tw: "John Piper 三十多年的講道與文章，全部免費。", en: "Three decades of John Piper's sermons and writing, all free." } },
-  { cat: "study", name: "OpenBible 主题查经", url: "https://www.openbible.info/", tags: "topical labs topics 主题 检索",
-    desc: { zh: "按主题检索经文，排序是读者投票出来的，找相关经文很快。", tw: "按主題檢索經文，排序是讀者投票出來的，找相關經文很快。", en: "Topical verse search ranked by reader votes — the fastest way to a related-passage list." } },
-
-  // ---- geography & history ----
-  { cat: "geo", name: "OpenBible Geocoding", url: "https://www.openbible.info/geo/", tags: "atlas coordinates places 坐标 地名 地图",
-    desc: { zh: "圣经地名的经纬度数据库，可下载，做地图的原始材料。", tw: "聖經地名的經緯度資料庫，可下載，做地圖的原始材料。", en: "Coordinates for biblical place names, downloadable — raw material for anyone building a map." } },
-  { cat: "geo", name: "Bible Mapper", url: "https://biblemapper.com/", tags: "maps atlas download 地图 图集",
-    desc: { zh: "免费的圣经地图集与制图软件，地图可直接用在讲义里。", tw: "免費的聖經地圖集與製圖軟體，地圖可直接用在講義裡。", en: "A free biblical atlas and mapping program; the maps drop straight into handouts." } },
-  { cat: "geo", name: "Bible History", url: "https://bible-history.com/", tags: "archaeology timeline ancient 考古 年表 历史",
-    desc: { zh: "考古、年表与古代近东背景资料，图多。", tw: "考古、年表與古代近東背景資料，圖多。", en: "Archaeology, timelines, and ancient Near East background, heavily illustrated." } },
-
-  // ---- worship ----
-  { cat: "worship", name: "Hymnary.org", url: "https://hymnary.org/", tags: "hymn score public domain 圣诗 乐谱 公有领域",
-    desc: { zh: "圣诗数据库，词曲来源、乐谱与版权状态都查得到。", tw: "聖詩資料庫，詞曲來源、樂譜與版權狀態都查得到。", en: "The hymn database: authorship, scores, tune histories, and copyright status." } },
-  { cat: "worship", name: "Hymnal.net", url: "https://www.hymnal.net/", tags: "chinese hymn audio 中文 诗歌 伴奏",
-    desc: { zh: "中英文诗歌，带乐谱与伴奏音轨，中文诗歌收得很全。", tw: "中英文詩歌，帶樂譜與伴奏音軌，中文詩歌收得很全。", en: "Hymns in Chinese and English with scores and backing tracks — unusually strong on Chinese repertoire." } },
-  { cat: "worship", name: "讚美之泉", url: "https://sop.org/", tags: "stream of praise chinese worship 中文 敬拜 赞美之泉",
-    desc: { zh: "赞美之泉的官方站，中文敬拜歌曲的乐谱与资源。", tw: "讚美之泉的官方站，中文敬拜歌曲的樂譜與資源。", en: "Stream of Praise — sheet music and resources for the Chinese worship repertoire." } },
-  { cat: "worship", name: "CCLI SongSelect", url: "https://songselect.ccli.com/", tags: "license chord chart lyrics 版权 和弦 授权",
-    desc: { zh: "查歌曲版权与授权，下载和弦谱，教会投影合规要用。", tw: "查歌曲版權與授權，下載和弦譜，教會投影合規要用。", en: "Licensing lookup and chord charts — the compliance side of projecting lyrics on Sunday." } },
-  { cat: "worship", name: "WorshipTogether", url: "https://www.worshiptogether.com/", tags: "chord charts new songs 和弦 新歌",
-    desc: { zh: "英文敬拜新歌的和弦谱与教学视频。", tw: "英文敬拜新歌的和弦譜與教學影片。", en: "Chord charts and tutorials for new English worship songs." } },
-
-  // ---- media ----
-  { cat: "media", name: "JESUS Film", url: "https://www.jesusfilm.org/", tags: "film languages evangelism 福音 影片 多语",
-    desc: { zh: "路加福音改编的影片，两千多种语言配音，传福音常用。", tw: "路加福音改編的影片，兩千多種語言配音，傳福音常用。", en: "The Luke-based film dubbed into over two thousand languages — a standard evangelistic tool." } },
-  { cat: "media", name: "良友電台", url: "https://rtv.org.tw/", tags: "radio chinese broadcast 广播 中文 灵修",
-    desc: { zh: "中文基督教广播，灵修节目与圣经讲解可在线收听。", tw: "中文基督教廣播，靈修節目與聖經講解可線上收聽。", en: "Chinese-language Christian radio: devotionals and Bible teaching, streamable." } },
-  { cat: "media", name: "YouVersion 读经计划", url: "https://www.bible.com/reading-plans", tags: "plan devotional schedule 计划 灵修 进度",
-    desc: { zh: "上万个读经计划，一年通读到三天主题灵修都有。", tw: "上萬個讀經計劃，一年通讀到三天主題靈修都有。", en: "Thousands of plans, from a year through the whole Bible to a three-day topical devotional." } },
+      zh: "给教会敬拜团队的歌词投影工具。建立并搜索曲库、自动分页、实时预览，导出 PowerPoint、Keynote 和 PDF。",
+      tw: "給教會敬拜團隊的歌詞投影工具。建立並搜尋曲庫、自動分頁、即時預覽，匯出 PowerPoint、Keynote 和 PDF。",
+      en: "Lyric slides for worship teams: build and search a song library, auto-paginate, preview live, and export PowerPoint, Keynote, and PDF." } },
 ];
 
 /* ------------------------------------------------------------------ state */
@@ -331,18 +201,10 @@ const pickLang = () => {
   return "en";
 };
 
-const state = {
-  lang: pickLang(),
-  theme: store.get("theme", "auto"),
-  cat: "all",
-  q: "",
-  favs: new Set(store.get("favs", [])),
-  verse: null,
-};
+const state = { lang: pickLang(), theme: store.get("theme", "auto"), verse: null };
 
 const $ = (sel) => document.querySelector(sel);
 const t = () => UI[state.lang];
-const keyOf = (item) => item.url;
 
 /* ------------------------------------------------------------------ verse */
 
@@ -374,43 +236,6 @@ function renderVerse() {
 
 /* ----------------------------------------------------------------- render */
 
-function matches(item, needle) {
-  if (!needle) return true;
-  const hay = [
-    item.name || "",
-    item.alt ? Object.values(item.alt).join(" ") : "",
-    Object.values(item.desc).join(" "),
-    item.tags || "",
-    item.url,
-  ].join(" ").toLowerCase();
-  return needle.split(/\s+/).filter(Boolean).every((word) => hay.includes(word));
-}
-
-function cardHtml(item) {
-  const fav = state.favs.has(keyOf(item));
-  const external = /^https?:/.test(item.url);
-  const alt = item.alt && item.alt[state.lang] ? item.alt[state.lang] : "";
-  const host = external ? new URL(item.url).hostname.replace(/^www\./, "") : "";
-  return `
-    <a class="card" href="${item.url}" target="_blank" rel="noopener" data-key="${item.url}">
-      <span class="name">${item.name}${alt ? `<span class="zh-alt">${alt}</span>` : ""}${external ? '<span class="ext">↗</span>' : ""}</span>
-      <span class="desc">${item.desc[state.lang]}</span>
-      ${host ? `<span class="host">${host}</span>` : ""}
-    </a>
-    <button class="fav" type="button" data-key="${item.url}" aria-pressed="${fav}" title="${t().favs}">${fav ? "★" : "☆"}</button>`;
-}
-
-function groupHtml(title, items, isOwn) {
-  if (!items.length) return "";
-  // Each card is an <a> with a sibling <button>; wrapping both in a relative
-  // cell keeps the star clickable without nesting a button inside a link.
-  const cells = items.map((item) => `<div class="cell">${cardHtml(item)}</div>`).join("");
-  return `<section class="group">
-      <div class="group-head"><h2>${title}</h2><span class="count">${items.length}</span></div>
-      <div class="grid${isOwn ? " own" : ""}">${cells}</div>
-    </section>`;
-}
-
 function render() {
   const ui = t();
   document.documentElement.lang = ui.htmlLang;
@@ -418,93 +243,34 @@ function render() {
 
   $("#tagline").textContent = ui.tagline;
   $("#herosub").textContent = ui.herosub;
-  $("#jumplabel").textContent = ui.jumpLabel;
-  $("#jumpq").placeholder = ui.jumpPlaceholder;
-  $("#jumpgo").textContent = ui.jumpGo;
-  $("#jumphint").textContent = ui.jumpHint;
-  $("#q").placeholder = ui.searchPlaceholder;
   $("#footnote").textContent = ui.footnote;
-  $("#suggest").textContent = ui.suggest;
   $("#themebtn").title = ui.themeLabel;
   $("#themebtn").textContent = state.theme === "auto" ? "◐" : state.theme === "dark" ? "☾" : "☀";
-
-  // The version follows the interface language until the reader overrides it;
-  // after that it is their choice, not ours.
-  if (!versionTouched) $("#jumpv").value = defaultVersion();
 
   $("#langseg").innerHTML = LANGS.map((l) =>
     `<button type="button" data-lang="${l}" aria-pressed="${l === state.lang}">${UI[l].langName}</button>`).join("");
 
-  $("#chips").innerHTML =
-    `<button class="chip" data-cat="all" aria-pressed="${state.cat === "all"}">${ui.all}</button>` +
-    (state.favs.size ? `<button class="chip" data-cat="fav" aria-pressed="${state.cat === "fav"}">★ ${ui.favs}</button>` : "") +
-    `<button class="chip" data-cat="own" aria-pressed="${state.cat === "own"}">${ui.own}</button>` +
-    CATS.map((c) => `<button class="chip" data-cat="${c.id}" aria-pressed="${state.cat === c.id}">${c[state.lang]}</button>`).join("");
+  $("#tools").innerHTML = TOOLS.map((tool) => {
+    const alt = tool.alt[state.lang] ? `<span class="zh-alt">${tool.alt[state.lang]}</span>` : "";
+    return `<a class="card" href="${tool.url}" target="_blank" rel="noopener">
+        <span class="name">${tool.name}${alt}</span>
+        <span class="desc">${tool.desc[state.lang]}</span>
+      </a>`;
+  }).join("");
 
-  if (state.cat === "fav" && !state.favs.size) state.cat = "all";
-
-  const needle = state.q.trim().toLowerCase();
-  const own = OWN.filter((i) => matches(i, needle));
-  const ext = LINKS.filter((i) => matches(i, needle));
-  const isFav = (i) => state.favs.has(keyOf(i));
-
-  let html = "";
-  if (state.cat === "fav") {
-    html = groupHtml("★ " + ui.favs, own.filter(isFav).concat(ext.filter(isFav)), false);
-  } else if (state.cat === "own") {
-    html = groupHtml(ui.own, own, true);
-  } else {
-    const pinnedExt = ext.filter(isFav);
-    const pinnedOwn = own.filter(isFav);
-    if (!needle && (pinnedExt.length || pinnedOwn.length) && state.cat === "all") {
-      html += groupHtml("★ " + ui.favs, pinnedOwn.concat(pinnedExt), false);
-    }
-    if (state.cat === "all") html += groupHtml(ui.own, own, true);
-    for (const c of CATS) {
-      if (state.cat !== "all" && state.cat !== c.id) continue;
-      html += groupHtml(c[state.lang], ext.filter((i) => i.cat === c.id), false);
-    }
-  }
-
-  $("#results").innerHTML = html;
-  const none = !html;
-  $("#empty").hidden = !none;
-  $("#empty").textContent = ui.empty;
-  active = -1;
   renderVerse();
 }
 
 /* ------------------------------------------------------------ interaction */
 
-let active = -1;
-let versionTouched = false;
-const cards = () => Array.from(document.querySelectorAll("#results .card"));
-const defaultVersion = () => (state.lang === "tw" ? "CUV" : state.lang === "en" ? "ESV" : "CUVS");
-
-function setActive(next) {
-  const list = cards();
-  if (!list.length) return;
-  list.forEach((c) => c.classList.remove("active"));
-  active = (next + list.length) % list.length;
-  const el = list[active];
-  el.classList.add("active");
-  el.scrollIntoView({ block: "nearest" });
+function applyTheme() {
+  if (state.theme === "auto") delete document.documentElement.dataset.theme;
+  else document.documentElement.dataset.theme = state.theme;
 }
 
 document.addEventListener("click", (event) => {
-  const fav = event.target.closest(".fav");
-  if (fav) {
-    const key = fav.dataset.key;
-    state.favs.has(key) ? state.favs.delete(key) : state.favs.add(key);
-    store.set("favs", Array.from(state.favs));
-    render();
-    return;
-  }
   const lang = event.target.closest("#langseg button");
   if (lang) { state.lang = lang.dataset.lang; store.set("lang", state.lang); render(); return; }
-
-  const chip = event.target.closest(".chip");
-  if (chip) { state.cat = chip.dataset.cat; render(); return; }
 
   if (event.target.closest("#themebtn")) {
     const order = ["auto", "light", "dark"];
@@ -513,38 +279,6 @@ document.addEventListener("click", (event) => {
     applyTheme();
     render();
   }
-});
-
-function applyTheme() {
-  if (state.theme === "auto") delete document.documentElement.dataset.theme;
-  else document.documentElement.dataset.theme = state.theme;
-}
-
-$("#q").addEventListener("input", (event) => { state.q = event.target.value; render(); });
-
-document.addEventListener("keydown", (event) => {
-  const typing = /^(INPUT|SELECT|TEXTAREA)$/.test(event.target.tagName);
-  if (event.key === "/" && !typing) { event.preventDefault(); $("#q").focus(); return; }
-  if (event.key === "Escape") {
-    if (state.q) { state.q = ""; $("#q").value = ""; render(); }
-    $("#q").blur();
-    return;
-  }
-  if (typing && event.target.id !== "q") return;
-  if (event.key === "ArrowDown") { event.preventDefault(); setActive(active + 1); }
-  else if (event.key === "ArrowUp") { event.preventDefault(); setActive(active - 1); }
-  else if (event.key === "Enter" && active >= 0) { const el = cards()[active]; if (el) el.click(); }
-});
-
-$("#jumpv").addEventListener("change", () => { versionTouched = true; });
-
-$("#jump").addEventListener("submit", (event) => {
-  event.preventDefault();
-  const query = $("#jumpq").value.trim();
-  if (!query) return;
-  const url = "https://www.biblegateway.com/passage/?search=" +
-    encodeURIComponent(query) + "&version=" + $("#jumpv").value;
-  window.open(url, "_blank", "noopener");
 });
 
 $("#verseshuffle").addEventListener("click", () => {
@@ -564,11 +298,6 @@ $("#versecopy").addEventListener("click", async (event) => {
 });
 
 /* -------------------------------------------------------------------- boot */
-
-$("#jumpv").innerHTML = [
-  ["CUVS", "和合本（简）"], ["CUV", "和合本（繁）"], ["CNVS", "新译本"],
-  ["ESV", "ESV"], ["NIV", "NIV"], ["KJV", "KJV"],
-].map(([value, label]) => `<option value="${value}">${label}</option>`).join("");
 
 state.verse = verseOfToday();
 applyTheme();

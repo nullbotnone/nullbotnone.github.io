@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <meta name="theme-color" content="#14170f" />
-    <title>slashai.app｜圣经地图、原文工具与敬拜资源导航</title>
-    <meta name="description" content="给教会和信徒的工具导航：圣经地图、原文查经、读经计划、敬拜诗歌与神学装备，三十余个精选站点，加上本站自制的三个开源工具。" />
+    <title>slashai.app｜圣经地图与敬拜工具</title>
+    <meta name="description" content="三个开源工具：第一世纪以色列的地形图、使徒行传的 3D 互动地图，以及给教会敬拜团队用的歌词投影工具。" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="slashai.app" />
-    <meta property="og:description" content="圣经地图、原文工具与敬拜资源导航。" />
+    <meta property="og:description" content="圣经地图与敬拜工具，三个开源项目。" />
     <meta property="og:url" content="https://slashai.app/" />
     <meta property="og:site_name" content="slashai.app" />
     <link rel="stylesheet" href="styles.css" />
@@ -32,17 +32,9 @@
       <section class="hero">
         <h1 id="tagline"></h1>
         <p class="hero-sub" id="herosub"></p>
-
-        <form class="jump" id="jump" autocomplete="off">
-          <label class="jump-label" for="jumpq" id="jumplabel"></label>
-          <div class="jump-row">
-            <input id="jumpq" type="text" />
-            <select id="jumpv"></select>
-            <button type="submit" id="jumpgo"></button>
-          </div>
-          <p class="jump-hint" id="jumphint"></p>
-        </form>
       </section>
+
+      <div class="grid" id="tools"></div>
 
       <section class="verse" id="verse" hidden>
         <div class="verse-body">
@@ -56,23 +48,9 @@
         </div>
       </section>
 
-      <section class="finder">
-        <div class="search">
-          <svg viewBox="0 0 24 24" aria-hidden="true" class="search-icon">
-            <circle cx="11" cy="11" r="7" /><path d="m16.5 16.5 4 4" />
-          </svg>
-          <input id="q" type="search" />
-          <kbd id="slashkey">/</kbd>
-        </div>
-        <div class="chips" id="chips"></div>
-      </section>
-
-      <div id="results"></div>
-      <p class="empty" id="empty" hidden></p>
-
       <noscript>
         <p class="empty">
-          这个页面用 JavaScript 渲染工具清单。请开启 JavaScript，或直接前往
+          这个页面用 JavaScript 渲染。请开启 JavaScript，或直接前往
           <a href="/messiah-land-map/">弥赛亚之地</a>、
           <a href="/apostles-sea-map/">直到地极</a>、
           <a href="/worship-wiki/">敬拜维基</a>。
@@ -84,8 +62,6 @@
       <p id="footnote"></p>
       <p class="foot-links">
         <a href="https://github.com/nullbotnone" target="_blank" rel="noopener">GitHub</a>
-        <span aria-hidden="true">·</span>
-        <a href="https://github.com/nullbotnone/nullbotnone.github.io" target="_blank" rel="noopener" id="suggest"></a>
       </p>
     </footer>
 

@@ -1,77 +1,41 @@
 (function () {
   const out = [];
   const ok = (name, cond, extra) => out.push((cond ? "PASS " : "FAIL ") + name + (extra ? " :: " + extra : ""));
-  const n = () => document.querySelectorAll("#results .card").length;
+  const cards = () => document.querySelectorAll("#tools .card");
   const click = (el) => el.dispatchEvent(new MouseEvent("click", { bubbles: true }));
-  const key = (k) => document.dispatchEvent(new KeyboardEvent("keydown", { key: k, bubbles: true }));
 
-  ok("renders all entries", n() === 35, "got " + n());
+  ok("renders exactly the three tools", cards().length === 3, "got " + cards().length);
+  ok("links stay relative", Array.from(cards()).map((a) => a.getAttribute("href")).join(",")
+     === "/messiah-land-map/,/apostles-sea-map/,/worship-wiki/");
+  ok("each opens a new tab",
+     Array.from(cards()).every((a) => a.target === "_blank" && /noopener/.test(a.rel)));
+  ok("no outside links in the body",
+     !Array.from(document.querySelectorAll("main a")).some((a) => /^https?:/.test(a.getAttribute("href") || "")
+       && !/biblegateway/.test(a.href)), "only the verse's context link may leave");
 
-  // language switch
   click(document.querySelector('#langseg button[data-lang="zh"]'));
-  const zh = document.getElementById("tagline").textContent;
-  ok("switches to Simplified", /圣经地图/.test(zh), zh.slice(0, 12));
+  ok("switches to Simplified", /三个为教会做的开源工具/.test(document.getElementById("tagline").textContent));
   ok("html lang follows", document.documentElement.lang === "zh-CN", document.documentElement.lang);
+  ok("card copy follows language", /第一世纪以色列/.test(document.getElementById("tools").textContent));
   click(document.querySelector('#langseg button[data-lang="tw"]'));
-  ok("switches to Traditional", /聖經地圖/.test(document.getElementById("tagline").textContent));
-  click(document.querySelector('#langseg button[data-lang="zh"]'));
+  ok("switches to Traditional", /三個為教會做的開源工具/.test(document.getElementById("tagline").textContent));
+  ok("alt names follow language", /彌賽亞之地/.test(document.getElementById("tools").textContent));
+  click(document.querySelector('#langseg button[data-lang="en"]'));
+  ok("switches to English", /Three open-source tools/.test(document.getElementById("tagline").textContent));
+  ok("alt names drop in English", !/弥赛亚|彌賽亞/.test(document.getElementById("tools").textContent));
+  ok("language persisted", JSON.parse(localStorage.getItem("slashai.lang")) === "en");
 
-  // search, in Chinese, across tags
-  const q = document.getElementById("q");
-  q.value = "地图"; q.dispatchEvent(new Event("input", { bubbles: true }));
-  const hits = n();
-  ok("search narrows", hits > 0 && hits < 35, "hits " + hits);
-  ok("search finds both maps", /Messiah Land Map/.test(document.getElementById("results").innerHTML)
-     && /Apostles Sea Map/.test(document.getElementById("results").innerHTML));
-  // search by English tag while UI is Chinese
-  q.value = "strongs"; q.dispatchEvent(new Event("input", { bubbles: true }));
-  ok("search crosses languages", /Blue Letter Bible/.test(document.getElementById("results").innerHTML), "n=" + n());
-  key("Escape");
-  ok("escape clears search", n() === 35, "got " + n());
+  const verse = document.getElementById("versetext").textContent;
+  ok("verse rendered", verse.length > 5, verse.slice(0, 20));
+  ok("verse ref matches language", /^[A-Za-z1-9]/.test(document.getElementById("verseref").textContent));
+  ok("context link uses KJV for English", /version=KJV/.test(document.getElementById("verseopen").href));
+  click(document.getElementById("verseshuffle"));
+  ok("shuffle keeps a verse on screen", document.getElementById("versetext").textContent.length > 5);
 
-  // favourites
-  const star = document.querySelector('.fav[data-key="https://hymnary.org/"]');
-  click(star);
-  ok("fav chip appears", !!document.querySelector('.chip[data-cat="fav"]'));
-  ok("pinned group rendered", /★/.test(document.querySelector(".group-head h2").textContent));
-  ok("fav persisted", JSON.parse(localStorage.getItem("slashai.favs")).includes("https://hymnary.org/"));
-  click(document.querySelector('.chip[data-cat="fav"]'));
-  ok("fav filter shows one", n() === 1, "got " + n());
-  // unstar the last favourite while the fav filter is active
-  click(document.querySelector(".fav"));
-  ok("recovers from empty favs", n() === 35, "got " + n());
-  ok("fav chip gone", !document.querySelector('.chip[data-cat="fav"]'));
-
-  // category filter
-  click(document.querySelector('.chip[data-cat="own"]'));
-  ok("own filter shows three", n() === 3, "got " + n());
-  ok("own cards keep relative urls", document.querySelector("#results .card").getAttribute("href") === "/messiah-land-map/");
-  ok("every card opens a new tab",
-     Array.from(document.querySelectorAll("#results .card")).every((a) => a.target === "_blank" && /noopener/.test(a.rel)));
-  click(document.querySelector('.chip[data-cat="worship"]'));
-  ok("worship filter", n() === 5, "got " + n());
-  click(document.querySelector('.chip[data-cat="all"]'));
-
-  // keyboard navigation
-  key("ArrowDown"); key("ArrowDown");
-  ok("arrow keys move focus", document.querySelectorAll("#results .card.active").length === 1);
-
-  // theme
   const before = document.documentElement.dataset.theme;
   click(document.getElementById("themebtn"));
   ok("theme toggles", document.documentElement.dataset.theme !== before,
      String(before) + " -> " + String(document.documentElement.dataset.theme));
-
-  // passage jump builds a Bible Gateway url rather than navigating
-  let opened = "";
-  window.open = (u) => { opened = u; return null; };
-  document.getElementById("jumpq").value = "约 3:16";
-  document.getElementById("jump").dispatchEvent(new Event("submit", { bubbles: true, cancelable: true }));
-  ok("jump builds search url", opened.startsWith("https://www.biblegateway.com/passage/?search=") && /version=CUVS/.test(opened), opened.slice(0, 78));
-
-  // verse shuffle keeps a verse on screen
-  click(document.getElementById("verseshuffle"));
-  ok("shuffle keeps text", document.getElementById("versetext").textContent.length > 5);
 
   document.title = out.join(" | ");
 })();
