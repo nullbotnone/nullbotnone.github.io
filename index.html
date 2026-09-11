@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#12180f" />
+    <title>slashai.app｜圣经地图与敬拜工具</title>
+    <meta name="description" content="三个开源项目：使徒行传的 3D 互动地图、第一世纪以色列的地形图，以及给教会敬拜团队用的歌词投影工具。" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="slashai.app" />
+    <meta property="og:description" content="圣经地图与敬拜工具，三个开源项目。" />
+    <meta property="og:url" content="https://slashai.app/" />
+    <meta property="og:site_name" content="slashai.app" />
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #12180f;
+        --ink: #e8e6dd;
+        --dim: #9a9c8e;
+        --line: #2b3326;
+        --accent: #d8c48a;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        padding: 12vh 6vw 8vh;
+        background: var(--bg);
+        color: var(--ink);
+        font: 16px/1.7 -apple-system, "PingFang SC", "Noto Sans SC", "Segoe UI", sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      main { max-width: 46rem; margin: 0 auto; }
+      h1 { font-size: 1.5rem; font-weight: 600; letter-spacing: .01em; margin: 0 0 .4rem; }
+      .lede { color: var(--dim); margin: 0 0 3.5rem; max-width: 34rem; }
+      a.card {
+        display: block;
+        padding: 1.4rem 0;
+        border-top: 1px solid var(--line);
+        color: inherit;
+        text-decoration: none;
+      }
+      a.card:last-of-type { border-bottom: 1px solid var(--line); }
+      a.card:hover .title, a.card:focus-visible .title { color: var(--accent); }
+      .title { font-size: 1.15rem; font-weight: 600; transition: color .15s; }
+      .title .en { color: var(--dim); font-weight: 400; font-size: .95rem; margin-left: .5rem; }
+      .desc { color: var(--dim); margin-top: .3rem; }
+      footer { margin-top: 3.5rem; color: var(--dim); font-size: .875rem; }
+      footer a { color: var(--dim); }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>slashai.app</h1>
+      <p class="lede">
+        圣经地图与敬拜工具。三个项目都在浏览器里直接跑，源码公开。
+      </p>
+
+      <a class="card" href="/messiah-land-map/">
+        <div class="title">弥赛亚之地<span class="en">Messiah Land Map</span></div>
+        <div class="desc">
+          第一世纪以色列的地形图，高程取自实测数据。平移、俯仰，把福音书的叙事放回它真实发生的距离和高差里。
+        </div>
+      </a>
+
+      <a class="card" href="/apostles-sea-map/">
+        <div class="title">直到地极<span class="en">Apostles Sea Map</span></div>
+        <div class="desc">
+          使徒行传走过的那片海：63 个地点、四段宣教行程，以及公元 50 年前后的罗马行省，画在真实地形上。
+        </div>
+      </a>
+
+      <a class="card" href="/worship-wiki/">
+        <div class="title">敬拜维基<span class="en">Worship Wiki</span></div>
+        <div class="desc">
+          给教会敬拜团队的歌词投影工具。建立曲库、自动分页、实时预览，导出 PowerPoint、Keynote 和 PDF。
+        </div>
+      </a>
+
+      <footer>
+        简体中文 · 繁體中文 · English ——
+        <a href="https://github.com/nullbotnone">GitHub</a>
+      </footer>
+    </main>
+  </body>
+</html>
