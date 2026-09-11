@@ -1,6 +1,6 @@
 # slashai.app
 
-The front door for the three tools hosted under this account. Static: no build
+The front door for the four tools hosted under this account. Static: no build
 step, no dependencies, no framework. GitHub Pages serves `main` as-is.
 
 | File | What it holds |

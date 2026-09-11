@@ -1,4 +1,4 @@
-/* slashai.app -- the front door for the three tools built here. Static: no
+/* slashai.app -- the front door for the four tools built here. Static: no
    framework, no build step, no dependencies. */
 
 const LANGS = ["zh", "tw", "en"];
@@ -10,7 +10,7 @@ const UI = {
     eyebrow: "为基督徒而造的开源工具",
     tagline: "让信仰的故事，看得见、用得上。",
     herosub: "从圣经世界的山海，到主日敬拜的投影——我把技术做成简单、开放、随手可用的工具，服事教会，也帮助每一个认真探索信仰的人。",
-    navTools: "工具", navVerse: "今日经文", explore: "探索三个工具", source: "查看开源代码",
+    navTools: "工具", navVerse: "今日经文", explore: "探索四个工具", source: "查看开源代码",
     collection: "工具集", toolsHeading: "已经启程的作品", toolsIntro: "每一个项目都从真实的需要开始：更清楚地理解圣经，更专注地预备敬拜。无需账号，打开就能使用。",
     verseHeading: "今日经文", roadmap: "接下来", comingTitle: "更多，正在路上。", comingBody: "这不是一个完成的清单，而是一间持续工作的数字工坊。新的圣经学习与教会服事工具会陆续来到这里。", follow: "在 GitHub 关注进展",
     shuffle: "换一节", copy: "复制经文", copied: "已复制", open: "读上下文",
@@ -23,7 +23,7 @@ const UI = {
     eyebrow: "為基督徒而造的開源工具",
     tagline: "讓信仰的故事，看得見、用得上。",
     herosub: "從聖經世界的山海，到主日敬拜的投影——我把技術做成簡單、開放、隨手可用的工具，服事教會，也幫助每一個認真探索信仰的人。",
-    navTools: "工具", navVerse: "今日經文", explore: "探索三個工具", source: "查看開源程式碼",
+    navTools: "工具", navVerse: "今日經文", explore: "探索四個工具", source: "查看開源程式碼",
     collection: "工具集", toolsHeading: "已經啟程的作品", toolsIntro: "每一個項目都從真實的需要開始：更清楚地理解聖經，更專注地預備敬拜。無需帳號，打開就能使用。",
     verseHeading: "今日經文", roadmap: "接下來", comingTitle: "更多，正在路上。", comingBody: "這不是一個完成的清單，而是一間持續工作的數位工坊。新的聖經學習與教會服事工具會陸續來到這裡。", follow: "在 GitHub 關注進展",
     shuffle: "換一節", copy: "複製經文", copied: "已複製", open: "讀上下文",
@@ -36,7 +36,7 @@ const UI = {
     eyebrow: "Open-source tools for Christians",
     tagline: "See the story. Serve with better tools.",
     herosub: "From the mountains and seas of the biblical world to Sunday lyric slides—I turn technology into simple, open tools for churches and for anyone exploring faith with care.",
-    navTools: "Tools", navVerse: "Daily verse", explore: "Explore all three", source: "View the source",
+    navTools: "Tools", navVerse: "Daily verse", explore: "Explore all four", source: "View the source",
     collection: "The collection", toolsHeading: "Tools already in motion", toolsIntro: "Each project began with a real need: understand Scripture more clearly and prepare worship with less friction. No account required—just open and use.",
     verseHeading: "A verse for today", roadmap: "What’s next", comingTitle: "More is on the way.", comingBody: "This isn’t a finished list. It’s an active digital workshop, with more tools for Bible study and church ministry coming here over time.", follow: "Follow progress on GitHub",
     shuffle: "Another verse", copy: "Copy verse", copied: "Copied", open: "Read in context",
@@ -200,6 +200,14 @@ const TOOLS = [
       zh: "给教会敬拜团队的歌词投影工具。建立并搜索曲库、自动分页、实时预览，导出 PowerPoint、Keynote 和 PDF。",
       tw: "給教會敬拜團隊的歌詞投影工具。建立並搜尋曲庫、自動分頁、即時預覽，匯出 PowerPoint、Keynote 和 PDF。",
       en: "Lyric slides for worship teams: build and search a song library, auto-paginate, preview live, and export PowerPoint, Keynote, and PDF." } },
+  { id: "translation", url: "/inplace-translation/", name: "InPlace Translation", featured: true, accent: "#d8bd79",
+    alt: { zh: "讲道翻译", tw: "講道翻譯", en: "" },
+    kind: { zh: "实时讲道翻译", tw: "即時講道翻譯", en: "LIVE SERMON TRANSLATION" },
+    tags: { zh: ["本地运行", "语音 + 字幕"], tw: ["本地運行", "語音 + 字幕"], en: ["Runs locally", "Voice + subtitles"] },
+    desc: {
+      zh: "在教会 Wi-Fi 上实时翻译讲道。访客扫码即可听到自己的语言并看到字幕；识别、翻译和语音合成都在一台 Mac 上本地运行，声音不出教会。",
+      tw: "在教會 Wi-Fi 上即時翻譯講道。訪客掃描 QR Code 即可聽到自己的語言並看到字幕；辨識、翻譯和語音合成都在一台 Mac 上本地運行，聲音不出教會。",
+      en: "Live sermon translation over church Wi-Fi. Visitors scan a QR code for translated audio and subtitles; recognition, translation, and speech all run locally on one Mac." } },
 ];
 
 /* ------------------------------------------------------------------ state */
@@ -271,6 +279,16 @@ function toolVisual(tool) {
       <span class="map-label one">ANTIOCH</span><span class="map-label two">ROME</span><span class="map-label three">EPHESUS</span>
     </div></div>`;
   }
+  if (tool.id === "translation") {
+    const first = state.lang === "en" ? "Turn with me to John chapter three." : state.lang === "tw" ? "請和我一起翻到約翰福音第三章。" : "请和我一起翻到约翰福音第三章。";
+    const second = state.lang === "en" ? "For God so loved the world, that he gave his only Son." : state.lang === "tw" ? "神愛世人，甚至將他的獨生子賜給他們。" : "神爱世人，甚至将他的独生子赐给他们。";
+    return `<div class="tool-window">${bar}<div class="translation-stage">
+      <div class="translation-top"><span class="translation-live"><i></i> LIVE</span><span>24 LISTENING</span></div>
+      <div class="translation-line past"><small>EN · PULPIT</small><p>“Turn with me to John chapter three.”</p><strong>${first}</strong></div>
+      <div class="translation-line"><small>EN · PULPIT</small><p>“For God so loved the world, that he gave his only Son.”</p><strong>${second}</strong></div>
+      <div class="translation-audio"><span>▶</span><span>PLAYING · ≈4S BEHIND</span></div>
+    </div></div>`;
+  }
   const lyric = state.lang === "en" ? "Be Thou my vision<br>O Lord of my heart" : state.lang === "tw" ? "成為我異象<br>懇求心中王" : "成为我异象<br>恳求心中王";
   return `<div class="tool-window">${bar}<div class="slide-stage">
     <div class="slide-rail"><span class="slide-thumb active"></span><span class="slide-thumb"></span><span class="slide-thumb"></span></div>
@@ -309,7 +327,7 @@ function render() {
 
   $("#tools").innerHTML = TOOLS.map((tool, index) => {
     const alt = tool.alt[state.lang] ? `<span class="zh-alt">${tool.alt[state.lang]}</span>` : "";
-    const ink = tool.id === "land" ? "#e2c57b" : tool.id === "sea" ? "#91a89f" : "#c8a75d";
+    const ink = tool.accent;
     return `<a class="card reveal${tool.featured ? " featured" : ""}" href="${tool.url}" target="_blank" rel="noopener"
         style="--card-accent:${tool.accent};--card-accent-ink:${ink};--card-dark:#061014" aria-label="${tool.name}${tool.alt[state.lang] ? ` — ${tool.alt[state.lang]}` : ""}">
         <div class="card-visual">${toolVisual(tool)}</div>
