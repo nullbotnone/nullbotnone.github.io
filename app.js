@@ -329,12 +329,20 @@ function render() {
 
 /* ------------------------------------------------------------ interaction */
 
+/* "auto" is what the rest of slashai.app stores, but this page has no
+   prefers-color-scheme rules, so auto paints exactly like dark. Resolve it against the OS
+   and always write an explicit theme, otherwise one click in three changes nothing. */
+function shown() {
+  if (state.theme !== "auto") return state.theme;
+  return window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches
+    ? "light" : "dark";
+}
+
 function applyTheme() {
-  if (state.theme === "auto") delete document.documentElement.dataset.theme;
-  else document.documentElement.dataset.theme = state.theme;
-  const isDark = state.theme !== "light";
-  document.querySelector('meta[name="theme-color"]').content = isDark ? "#071013" : "#f1eadb";
-  $("#themebtn").dataset.mode = state.theme;
+  document.documentElement.dataset.theme = shown();
+  document.querySelector('meta[name="theme-color"]').content =
+    shown() === "light" ? "#f1eadb" : "#071013";
+  $("#themebtn").dataset.mode = shown();
 }
 
 document.addEventListener("click", (event) => {
@@ -342,8 +350,7 @@ document.addEventListener("click", (event) => {
   if (lang) { state.lang = lang.dataset.lang; store.set("lang", state.lang); render(); return; }
 
   if (event.target.closest("#themebtn")) {
-    if (state.theme === "auto") state.theme = "light";
-    else state.theme = state.theme === "light" ? "dark" : "auto";
+    state.theme = shown() === "light" ? "dark" : "light";   // flip what is on screen, every time
     store.set("theme", state.theme);
     applyTheme();
     render();

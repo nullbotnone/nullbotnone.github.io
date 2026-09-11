@@ -32,10 +32,15 @@
   click(document.getElementById("verseshuffle"));
   ok("shuffle keeps a verse on screen", document.getElementById("versetext").textContent.length > 5);
 
-  const before = document.documentElement.dataset.theme;
-  click(document.getElementById("themebtn"));
-  ok("theme toggles", document.documentElement.dataset.theme !== before,
-     String(before) + " -> " + String(document.documentElement.dataset.theme));
+  // compare what the page LOOKS like, not the attribute: with no attribute the page renders
+  // the stylesheet's base theme, so "absent" and "dark" are the same picture and the old
+  // three-state cycle passed an attribute comparison while one click in three painted nothing
+  const osLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+  const appearance = () => document.documentElement.dataset.theme || (osLight ? "light" : "dark");
+  const seen = [appearance()];
+  for (let i = 0; i < 4; i++) { click(document.getElementById("themebtn")); seen.push(appearance()); }
+  ok("every theme click changes the theme",
+     seen.every((v, i) => i === 0 || v !== seen[i - 1]), seen.join(" -> "));
 
   document.title = out.join(" | ");
 })();
