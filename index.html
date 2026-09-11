@@ -1,86 +1,94 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-lang="zh">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-    <meta name="theme-color" content="#12180f" />
-    <title>slashai.app｜圣经地图与敬拜工具</title>
-    <meta name="description" content="三个开源项目：使徒行传的 3D 互动地图、第一世纪以色列的地形图，以及给教会敬拜团队用的歌词投影工具。" />
+    <meta name="theme-color" content="#14170f" />
+    <title>slashai.app｜圣经地图、原文工具与敬拜资源导航</title>
+    <meta name="description" content="给教会和信徒的工具导航：圣经地图、原文查经、读经计划、敬拜诗歌与神学装备，三十余个精选站点，加上本站自制的三个开源工具。" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="slashai.app" />
-    <meta property="og:description" content="圣经地图与敬拜工具，三个开源项目。" />
+    <meta property="og:description" content="圣经地图、原文工具与敬拜资源导航。" />
     <meta property="og:url" content="https://slashai.app/" />
     <meta property="og:site_name" content="slashai.app" />
-    <style>
-      :root {
-        color-scheme: dark;
-        --bg: #12180f;
-        --ink: #e8e6dd;
-        --dim: #9a9c8e;
-        --line: #2b3326;
-        --accent: #d8c48a;
-      }
-      * { box-sizing: border-box; }
-      body {
-        margin: 0;
-        padding: 12vh 6vw 8vh;
-        background: var(--bg);
-        color: var(--ink);
-        font: 16px/1.7 -apple-system, "PingFang SC", "Noto Sans SC", "Segoe UI", sans-serif;
-        -webkit-font-smoothing: antialiased;
-      }
-      main { max-width: 46rem; margin: 0 auto; }
-      h1 { font-size: 1.5rem; font-weight: 600; letter-spacing: .01em; margin: 0 0 .4rem; }
-      .lede { color: var(--dim); margin: 0 0 3.5rem; max-width: 34rem; }
-      a.card {
-        display: block;
-        padding: 1.4rem 0;
-        border-top: 1px solid var(--line);
-        color: inherit;
-        text-decoration: none;
-      }
-      a.card:last-of-type { border-bottom: 1px solid var(--line); }
-      a.card:hover .title, a.card:focus-visible .title { color: var(--accent); }
-      .title { font-size: 1.15rem; font-weight: 600; transition: color .15s; }
-      .title .en { color: var(--dim); font-weight: 400; font-size: .95rem; margin-left: .5rem; }
-      .desc { color: var(--dim); margin-top: .3rem; }
-      footer { margin-top: 3.5rem; color: var(--dim); font-size: .875rem; }
-      footer a { color: var(--dim); }
-    </style>
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <header class="topbar">
+      <a class="brand" href="/">
+        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M16 4.5 7 15h3.6v12.5h10.8V15H25z" />
+        </svg>
+        <span>slashai<span class="brand-dim">.app</span></span>
+      </a>
+      <div class="topbar-tools">
+        <div class="seg" role="group" id="langseg"></div>
+        <button class="iconbtn" id="themebtn" type="button" aria-label="theme"></button>
+      </div>
+    </header>
+
     <main>
-      <h1>slashai.app</h1>
-      <p class="lede">
-        圣经地图与敬拜工具。三个项目都在浏览器里直接跑，源码公开。
-      </p>
+      <section class="hero">
+        <h1 id="tagline"></h1>
+        <p class="hero-sub" id="herosub"></p>
 
-      <a class="card" href="/messiah-land-map/">
-        <div class="title">弥赛亚之地<span class="en">Messiah Land Map</span></div>
-        <div class="desc">
-          第一世纪以色列的地形图，高程取自实测数据。平移、俯仰，把福音书的叙事放回它真实发生的距离和高差里。
+        <form class="jump" id="jump" autocomplete="off">
+          <label class="jump-label" for="jumpq" id="jumplabel"></label>
+          <div class="jump-row">
+            <input id="jumpq" type="text" />
+            <select id="jumpv"></select>
+            <button type="submit" id="jumpgo"></button>
+          </div>
+          <p class="jump-hint" id="jumphint"></p>
+        </form>
+      </section>
+
+      <section class="verse" id="verse" hidden>
+        <div class="verse-body">
+          <blockquote id="versetext"></blockquote>
+          <cite id="verseref"></cite>
         </div>
-      </a>
-
-      <a class="card" href="/apostles-sea-map/">
-        <div class="title">直到地极<span class="en">Apostles Sea Map</span></div>
-        <div class="desc">
-          使徒行传走过的那片海：63 个地点、四段宣教行程，以及公元 50 年前后的罗马行省，画在真实地形上。
+        <div class="verse-actions">
+          <button type="button" class="ghost" id="verseshuffle"></button>
+          <button type="button" class="ghost" id="versecopy"></button>
+          <a class="ghost" id="verseopen" target="_blank" rel="noopener"></a>
         </div>
-      </a>
+      </section>
 
-      <a class="card" href="/worship-wiki/">
-        <div class="title">敬拜维基<span class="en">Worship Wiki</span></div>
-        <div class="desc">
-          给教会敬拜团队的歌词投影工具。建立曲库、自动分页、实时预览，导出 PowerPoint、Keynote 和 PDF。
+      <section class="finder">
+        <div class="search">
+          <svg viewBox="0 0 24 24" aria-hidden="true" class="search-icon">
+            <circle cx="11" cy="11" r="7" /><path d="m16.5 16.5 4 4" />
+          </svg>
+          <input id="q" type="search" />
+          <kbd id="slashkey">/</kbd>
         </div>
-      </a>
+        <div class="chips" id="chips"></div>
+      </section>
 
-      <footer>
-        简体中文 · 繁體中文 · English ——
-        <a href="https://github.com/nullbotnone">GitHub</a>
-      </footer>
+      <div id="results"></div>
+      <p class="empty" id="empty" hidden></p>
+
+      <noscript>
+        <p class="empty">
+          这个页面用 JavaScript 渲染工具清单。请开启 JavaScript，或直接前往
+          <a href="/messiah-land-map/">弥赛亚之地</a>、
+          <a href="/apostles-sea-map/">直到地极</a>、
+          <a href="/worship-wiki/">敬拜维基</a>。
+        </p>
+      </noscript>
     </main>
+
+    <footer>
+      <p id="footnote"></p>
+      <p class="foot-links">
+        <a href="https://github.com/nullbotnone" target="_blank" rel="noopener">GitHub</a>
+        <span aria-hidden="true">·</span>
+        <a href="https://github.com/nullbotnone/nullbotnone.github.io" target="_blank" rel="noopener" id="suggest"></a>
+      </p>
+    </footer>
+
+    <script src="app.js"></script>
   </body>
 </html>
