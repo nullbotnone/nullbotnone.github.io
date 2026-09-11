@@ -4,67 +4,98 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-    <meta name="theme-color" content="#14170f" />
-    <title>slashai.app｜圣经地图与敬拜工具</title>
-    <meta name="description" content="三个开源工具：第一世纪以色列的地形图、使徒行传的 3D 互动地图，以及给教会敬拜团队用的歌词投影工具。" />
+    <meta name="theme-color" content="#071013" />
+    <title>slashai.app｜为教会而造的数字工具</title>
+    <meta name="description" content="探索为基督徒与教会团队打造的开源工具：圣经互动地图、使徒行程地图与敬拜歌词投影。" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="slashai.app" />
-    <meta property="og:description" content="圣经地图与敬拜工具，三个开源项目。" />
+    <meta property="og:description" content="圣经地图、敬拜工具，以及更多正在路上的开源项目。" />
     <meta property="og:url" content="https://slashai.app/" />
     <meta property="og:site_name" content="slashai.app" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <a class="skip-link" id="skiplink" href="#tools-heading">Skip to tools</a>
+
     <header class="topbar">
-      <a class="brand" href="/">
-        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
-          <path d="M16 4.5 7 15h3.6v12.5h10.8V15H25z" />
-        </svg>
+      <a class="brand" href="/" aria-label="slashai.app home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32"><path d="M16 2.5c1.15 7.35 3.15 9.95 8.9 13.5-5.75 3.55-7.75 6.15-8.9 13.5-1.15-7.35-3.15-9.95-8.9-13.5 5.75-3.55 7.75-6.15 8.9-13.5Z" /></svg>
+        </span>
         <span>slashai<span class="brand-dim">.app</span></span>
       </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#tools-heading" id="navtools"></a>
+        <a href="#verse" id="navverse"></a>
+      </nav>
       <div class="topbar-tools">
-        <div class="seg" role="group" id="langseg"></div>
-        <button class="iconbtn" id="themebtn" type="button" aria-label="theme"></button>
+        <div class="seg" role="group" aria-label="Language" id="langseg"></div>
+        <button class="iconbtn" id="themebtn" type="button">
+          <span class="theme-icon" aria-hidden="true"></span>
+          <span class="sr-only" id="themelabel"></span>
+        </button>
       </div>
     </header>
 
     <main>
-      <section class="hero">
-        <h1 id="tagline"></h1>
-        <p class="hero-sub" id="herosub"></p>
+      <section class="hero" aria-labelledby="tagline">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="eyebrow-line" aria-hidden="true"></span><span id="eyebrow"></span></div>
+          <h1 id="tagline"></h1>
+          <p class="hero-sub" id="herosub"></p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#tools-heading"><span id="explorelabel"></span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 6 6-6 6" /></svg></a>
+            <a class="text-link" href="https://github.com/nullbotnone" target="_blank" rel="noopener"><span id="sourcelabel"></span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M6 14 14 6M8 6h6v6" /></svg></a>
+          </div>
+        </div>
+
+        <div class="hero-console" aria-hidden="true">
+          <div class="console-bar"><span class="console-dot"></span><span class="console-dot"></span><span class="console-dot"></span><span class="console-path">/ tools / ministry</span></div>
+          <div class="console-grid">
+            <div class="console-orbit">
+              <span class="orbit orbit-one"></span><span class="orbit orbit-two"></span>
+              <span class="orbit-node node-map">M</span><span class="orbit-node node-acts">A</span><span class="orbit-node node-worship">W</span>
+              <span class="orbit-core"><svg viewBox="0 0 32 32"><path d="M16 2.5c1.15 7.35 3.15 9.95 8.9 13.5-5.75 3.55-7.75 6.15-8.9 13.5-1.15-7.35-3.15-9.95-8.9-13.5 5.75-3.55 7.75-6.15 8.9-13.5Z" /></svg></span>
+            </div>
+            <div class="console-status">
+              <p class="status-kicker">OPEN SOURCE</p><p class="status-number">03</p>
+              <div class="status-row"><span>SHIPPED</span><span class="status-live"><i></i> LIVE</span></div>
+              <div class="status-track"><span></span></div><p class="status-next">+ MORE IN THE WORKSHOP</p>
+            </div>
+          </div>
+        </div>
       </section>
 
-      <div class="grid" id="tools"></div>
-
-      <section class="verse" id="verse" hidden>
-        <div class="verse-body">
-          <blockquote id="versetext"></blockquote>
-          <cite id="verseref"></cite>
+      <section class="tool-section" aria-labelledby="tools-heading">
+        <div class="section-heading reveal">
+          <div><p class="section-index">01 / <span id="collectionlabel"></span></p><h2 id="tools-heading"></h2></div>
+          <p id="toolsintro"></p>
         </div>
-        <div class="verse-actions">
-          <button type="button" class="ghost" id="verseshuffle"></button>
-          <button type="button" class="ghost" id="versecopy"></button>
-          <a class="ghost" id="verseopen" target="_blank" rel="noopener"></a>
+        <div class="grid" id="tools"></div>
+      </section>
+
+      <section class="verse reveal" id="verse" hidden aria-labelledby="verseheading">
+        <div class="verse-label"><span class="verse-spark" aria-hidden="true">✦</span><span id="verseheading"></span></div>
+        <div class="verse-layout">
+          <div class="verse-body"><blockquote id="versetext"></blockquote><cite id="verseref"></cite></div>
+          <div class="verse-actions"><button type="button" class="ghost" id="verseshuffle"></button><button type="button" class="ghost" id="versecopy"></button><a class="ghost" id="verseopen" target="_blank" rel="noopener"></a></div>
         </div>
       </section>
 
-      <noscript>
-        <p class="empty">
-          这个页面用 JavaScript 渲染。请开启 JavaScript，或直接前往
-          <a href="/messiah-land-map/">弥赛亚之地</a>、
-          <a href="/apostles-sea-map/">直到地极</a>、
-          <a href="/worship-wiki/">敬拜维基</a>。
-        </p>
-      </noscript>
+      <section class="coming reveal" aria-labelledby="coming-title">
+        <div class="coming-mark" aria-hidden="true"><span>+</span></div>
+        <div class="coming-copy"><p class="section-index">02 / <span id="roadmaplabel"></span></p><h2 id="coming-title"></h2><p id="comingbody"></p></div>
+        <a class="coming-link" href="https://github.com/nullbotnone" target="_blank" rel="noopener"><span id="followlabel"></span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M6 14 14 6M8 6h6v6" /></svg></a>
+      </section>
+
+      <noscript><p class="empty">这个页面用 JavaScript 渲染。请开启 JavaScript，或直接前往 <a href="/messiah-land-map/">弥赛亚之地</a>、<a href="/apostles-sea-map/">直到地极</a>、<a href="/worship-wiki/">敬拜维基</a>。</p></noscript>
     </main>
 
     <footer>
-      <p id="footnote"></p>
-      <p class="foot-links">
-        <a href="https://github.com/nullbotnone" target="_blank" rel="noopener">GitHub</a>
-      </p>
+      <a class="footer-brand" href="/">slashai.app</a><p id="footnote"></p><p class="foot-links"><a href="https://github.com/nullbotnone" target="_blank" rel="noopener">GitHub ↗</a></p>
     </footer>
 
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
     <script src="app.js"></script>
   </body>
 </html>

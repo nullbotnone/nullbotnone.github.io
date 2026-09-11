@@ -9,19 +9,19 @@
      === "/messiah-land-map/,/apostles-sea-map/,/worship-wiki/");
   ok("each opens a new tab",
      Array.from(cards()).every((a) => a.target === "_blank" && /noopener/.test(a.rel)));
-  ok("no outside links in the body",
+  ok("outside links stay limited",
      !Array.from(document.querySelectorAll("main a")).some((a) => /^https?:/.test(a.getAttribute("href") || "")
-       && !/biblegateway/.test(a.href)), "only the verse's context link may leave");
+       && !/biblegateway|github\.com\/nullbotnone/.test(a.href)), "only project source and verse context may leave");
 
   click(document.querySelector('#langseg button[data-lang="zh"]'));
-  ok("switches to Simplified", /三个为教会做的开源工具/.test(document.getElementById("tagline").textContent));
+  ok("switches to Simplified", /让信仰的故事/.test(document.getElementById("tagline").textContent));
   ok("html lang follows", document.documentElement.lang === "zh-CN", document.documentElement.lang);
   ok("card copy follows language", /第一世纪以色列/.test(document.getElementById("tools").textContent));
   click(document.querySelector('#langseg button[data-lang="tw"]'));
-  ok("switches to Traditional", /三個為教會做的開源工具/.test(document.getElementById("tagline").textContent));
+  ok("switches to Traditional", /讓信仰的故事/.test(document.getElementById("tagline").textContent));
   ok("alt names follow language", /彌賽亞之地/.test(document.getElementById("tools").textContent));
   click(document.querySelector('#langseg button[data-lang="en"]'));
-  ok("switches to English", /Three open-source tools/.test(document.getElementById("tagline").textContent));
+  ok("switches to English", /See the story/.test(document.getElementById("tagline").textContent));
   ok("alt names drop in English", !/弥赛亚|彌賽亞/.test(document.getElementById("tools").textContent));
   ok("language persisted", JSON.parse(localStorage.getItem("slashai.lang")) === "en");
 

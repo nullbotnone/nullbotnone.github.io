@@ -5,9 +5,9 @@ step, no dependencies, no framework. GitHub Pages serves `main` as-is.
 
 | File | What it holds |
 | --- | --- |
-| `index.html` | Page skeleton. Everything inside it is filled in by `app.js`. |
-| `app.js` | UI strings (简/繁/EN), the verse list, the three tool entries, and all rendering. |
-| `styles.css` | Warm-atlas palette, shared with the two map projects. Light and dark. |
+| `index.html` | The semantic page structure and interactive showcase surfaces. |
+| `app.js` | UI strings (简/繁/EN), verses, tool data, rendering, and interactions. |
+| `styles.css` | Responsive visual system, mini tool previews, motion, light and dark themes. |
 | `selftest.sh` | Interaction self-check. Run it before pushing. |
 
 The page lists only the tools built here. It deliberately carries no directory

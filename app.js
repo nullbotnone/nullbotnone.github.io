@@ -6,26 +6,41 @@ const LANGS = ["zh", "tw", "en"];
 const UI = {
   zh: {
     langName: "简", htmlLang: "zh-CN",
-    tagline: "三个为教会做的开源工具。",
-    herosub: "两张圣经地图和一个歌词投影工具，都在浏览器里直接打开，不需要账号。",
-    shuffle: "换一节", copy: "复制", copied: "已复制", open: "读上下文",
-    footnote: "经文为和合本与 KJV，均属公有领域。三个项目的源码都在 GitHub 上。",
+    skip: "跳到工具",
+    eyebrow: "为基督徒而造的开源工具",
+    tagline: "让信仰的故事，看得见、用得上。",
+    herosub: "从圣经世界的山海，到主日敬拜的投影——我把技术做成简单、开放、随手可用的工具，服事教会，也帮助每一个认真探索信仰的人。",
+    navTools: "工具", navVerse: "今日经文", explore: "探索三个工具", source: "查看开源代码",
+    collection: "工具集", toolsHeading: "已经启程的作品", toolsIntro: "每一个项目都从真实的需要开始：更清楚地理解圣经，更专注地预备敬拜。无需账号，打开就能使用。",
+    verseHeading: "今日经文", roadmap: "接下来", comingTitle: "更多，正在路上。", comingBody: "这不是一个完成的清单，而是一间持续工作的数字工坊。新的圣经学习与教会服事工具会陆续来到这里。", follow: "在 GitHub 关注进展",
+    shuffle: "换一节", copy: "复制经文", copied: "已复制", open: "读上下文",
+    footnote: "经文采用公有领域的和合本与 KJV。所有工具均为开源项目。",
     themeLabel: "切换主题",
   },
   tw: {
     langName: "繁", htmlLang: "zh-TW",
-    tagline: "三個為教會做的開源工具。",
-    herosub: "兩張聖經地圖和一個歌詞投影工具，都在瀏覽器裡直接打開，不需要帳號。",
-    shuffle: "換一節", copy: "複製", copied: "已複製", open: "讀上下文",
-    footnote: "經文為和合本與 KJV，均屬公有領域。三個項目的原始碼都在 GitHub 上。",
+    skip: "跳到工具",
+    eyebrow: "為基督徒而造的開源工具",
+    tagline: "讓信仰的故事，看得見、用得上。",
+    herosub: "從聖經世界的山海，到主日敬拜的投影——我把技術做成簡單、開放、隨手可用的工具，服事教會，也幫助每一個認真探索信仰的人。",
+    navTools: "工具", navVerse: "今日經文", explore: "探索三個工具", source: "查看開源程式碼",
+    collection: "工具集", toolsHeading: "已經啟程的作品", toolsIntro: "每一個項目都從真實的需要開始：更清楚地理解聖經，更專注地預備敬拜。無需帳號，打開就能使用。",
+    verseHeading: "今日經文", roadmap: "接下來", comingTitle: "更多，正在路上。", comingBody: "這不是一個完成的清單，而是一間持續工作的數位工坊。新的聖經學習與教會服事工具會陸續來到這裡。", follow: "在 GitHub 關注進展",
+    shuffle: "換一節", copy: "複製經文", copied: "已複製", open: "讀上下文",
+    footnote: "經文採用公有領域的和合本與 KJV。所有工具均為開源項目。",
     themeLabel: "切換主題",
   },
   en: {
     langName: "EN", htmlLang: "en",
-    tagline: "Three open-source tools, built for the church.",
-    herosub: "Two Bible maps and a lyric-slide builder. Everything runs in the browser; none of it asks for an account.",
-    shuffle: "Another", copy: "Copy", copied: "Copied", open: "Read in context",
-    footnote: "Verses are CUV and KJV, both public domain. All three projects are open source on GitHub.",
+    skip: "Skip to tools",
+    eyebrow: "Open-source tools for Christians",
+    tagline: "See the story. Serve with better tools.",
+    herosub: "From the mountains and seas of the biblical world to Sunday lyric slides—I turn technology into simple, open tools for churches and for anyone exploring faith with care.",
+    navTools: "Tools", navVerse: "Daily verse", explore: "Explore all three", source: "View the source",
+    collection: "The collection", toolsHeading: "Tools already in motion", toolsIntro: "Each project began with a real need: understand Scripture more clearly and prepare worship with less friction. No account required—just open and use.",
+    verseHeading: "A verse for today", roadmap: "What’s next", comingTitle: "More is on the way.", comingBody: "This isn’t a finished list. It’s an active digital workshop, with more tools for Bible study and church ministry coming here over time.", follow: "Follow progress on GitHub",
+    shuffle: "Another verse", copy: "Copy verse", copied: "Copied", open: "Read in context",
+    footnote: "Verses use the public-domain CUV and KJV. Every tool is open source.",
     themeLabel: "Toggle theme",
   },
 };
@@ -161,20 +176,26 @@ const VERSES = [
 
 /* Paths are relative: these are project Pages under the same domain. */
 const TOOLS = [
-  { url: "/messiah-land-map/", name: "Messiah Land Map",
+  { id: "land", url: "/messiah-land-map/", name: "Messiah Land Map", featured: true, accent: "#e2c57b",
     alt: { zh: "弥赛亚之地", tw: "彌賽亞之地", en: "" },
+    kind: { zh: "圣经地理", tw: "聖經地理", en: "BIBLICAL GEOGRAPHY" },
+    tags: { zh: ["3D 地形", "福音书"], tw: ["3D 地形", "福音書"], en: ["3D terrain", "Gospels"] },
     desc: {
       zh: "第一世纪以色列的地形图，高程取自实测数据。平移、俯仰，把福音书的叙事放回它真实的距离和高差里。",
       tw: "第一世紀以色列的地形圖，高程取自實測資料。平移、俯仰，把福音書的敘事放回它真實的距離和高差裡。",
       en: "A relief map of first-century Israel built on measured elevation data. Pan and tilt the land, and read the Gospels against the distances and drops they happened in." } },
-  { url: "/apostles-sea-map/", name: "Apostles Sea Map",
+  { id: "sea", url: "/apostles-sea-map/", name: "Apostles Sea Map", accent: "#91a89f",
     alt: { zh: "直到地极", tw: "直到地極", en: "" },
+    kind: { zh: "使徒行程", tw: "使徒行程", en: "APOSTOLIC JOURNEYS" },
+    tags: { zh: ["63 地点", "4 段旅程"], tw: ["63 地點", "4 段旅程"], en: ["63 places", "4 journeys"] },
     desc: {
       zh: "使徒行传走过的那片海：63 个地点、四段宣教行程画在真实地形上，以及公元 50 年前后的罗马行省。",
       tw: "使徒行傳走過的那片海：63 個地點、四段宣教行程畫在真實地形上，以及公元 50 年前後的羅馬行省。",
       en: "The sea the book of Acts moves across: 63 places and four itineraries drawn over real terrain, with the Roman provinces as they stood around AD 50." } },
-  { url: "/worship-wiki/", name: "Worship Wiki",
+  { id: "worship", url: "/worship-wiki/", name: "Worship Wiki", accent: "#c8a75d",
     alt: { zh: "敬拜维基", tw: "敬拜維基", en: "" },
+    kind: { zh: "敬拜预备", tw: "敬拜預備", en: "WORSHIP PLANNING" },
+    tags: { zh: ["歌词投影", "多格式导出"], tw: ["歌詞投影", "多格式匯出"], en: ["Lyric slides", "Multi-export"] },
     desc: {
       zh: "给教会敬拜团队的歌词投影工具。建立并搜索曲库、自动分页、实时预览，导出 PowerPoint、Keynote 和 PDF。",
       tw: "給教會敬拜團隊的歌詞投影工具。建立並搜尋曲庫、自動分頁、即時預覽，匯出 PowerPoint、Keynote 和 PDF。",
@@ -236,25 +257,70 @@ function renderVerse() {
 
 /* ----------------------------------------------------------------- render */
 
+function toolVisual(tool) {
+  const bar = `<div class="window-top"><i></i><i></i><i></i><span>${tool.name.toUpperCase()}</span></div>`;
+  if (tool.id === "land") {
+    return `<div class="tool-window">${bar}<div class="mini-map">
+      <span class="contour contour-a"></span><span class="contour contour-b"></span><span class="map-route"></span>
+      <span class="map-label one">GALILEE</span><span class="map-label two">JUDEA</span><span class="map-label three">SAMARIA</span>
+    </div></div>`;
+  }
+  if (tool.id === "sea") {
+    return `<div class="tool-window">${bar}<div class="mini-sea">
+      <span class="sea-coast a"></span><span class="sea-coast b"></span><span class="sea-route"></span>
+      <span class="map-label one">ANTIOCH</span><span class="map-label two">ROME</span><span class="map-label three">EPHESUS</span>
+    </div></div>`;
+  }
+  const lyric = state.lang === "en" ? "Be Thou my vision<br>O Lord of my heart" : state.lang === "tw" ? "成為我異象<br>懇求心中王" : "成为我异象<br>恳求心中王";
+  return `<div class="tool-window">${bar}<div class="slide-stage">
+    <div class="slide-rail"><span class="slide-thumb active"></span><span class="slide-thumb"></span><span class="slide-thumb"></span></div>
+    <div class="slide-canvas"><span>${lyric}</span></div><span class="slide-cursor"></span>
+  </div></div>`;
+}
+
 function render() {
   const ui = t();
   document.documentElement.lang = ui.htmlLang;
   document.documentElement.dataset.lang = state.lang;
 
+  document.title = state.lang === "en" ? "slashai.app | Open-source tools for Christians" : "slashai.app｜为教会而造的数字工具";
+  $("#skiplink").textContent = ui.skip;
+  $("#eyebrow").textContent = ui.eyebrow;
   $("#tagline").textContent = ui.tagline;
   $("#herosub").textContent = ui.herosub;
+  $("#navtools").textContent = ui.navTools;
+  $("#navverse").textContent = ui.navVerse;
+  $("#explorelabel").textContent = ui.explore;
+  $("#sourcelabel").textContent = ui.source;
+  $("#collectionlabel").textContent = ui.collection;
+  $("#tools-heading").textContent = ui.toolsHeading;
+  $("#toolsintro").textContent = ui.toolsIntro;
+  $("#verseheading").textContent = ui.verseHeading;
+  $("#roadmaplabel").textContent = ui.roadmap;
+  $("#coming-title").textContent = ui.comingTitle;
+  $("#comingbody").textContent = ui.comingBody;
+  $("#followlabel").textContent = ui.follow;
   $("#footnote").textContent = ui.footnote;
   $("#themebtn").title = ui.themeLabel;
-  $("#themebtn").textContent = state.theme === "auto" ? "◐" : state.theme === "dark" ? "☾" : "☀";
+  $("#themelabel").textContent = ui.themeLabel;
 
   $("#langseg").innerHTML = LANGS.map((l) =>
     `<button type="button" data-lang="${l}" aria-pressed="${l === state.lang}">${UI[l].langName}</button>`).join("");
 
-  $("#tools").innerHTML = TOOLS.map((tool) => {
+  $("#tools").innerHTML = TOOLS.map((tool, index) => {
     const alt = tool.alt[state.lang] ? `<span class="zh-alt">${tool.alt[state.lang]}</span>` : "";
-    return `<a class="card" href="${tool.url}" target="_blank" rel="noopener">
-        <span class="name">${tool.name}${alt}</span>
-        <span class="desc">${tool.desc[state.lang]}</span>
+    const ink = tool.id === "land" ? "#e2c57b" : tool.id === "sea" ? "#91a89f" : "#c8a75d";
+    return `<a class="card reveal${tool.featured ? " featured" : ""}" href="${tool.url}" target="_blank" rel="noopener"
+        style="--card-accent:${tool.accent};--card-accent-ink:${ink};--card-dark:#061014" aria-label="${tool.name}${tool.alt[state.lang] ? ` — ${tool.alt[state.lang]}` : ""}">
+        <div class="card-visual">${toolVisual(tool)}</div>
+        <div class="card-content">
+          <div class="card-meta"><span class="tool-no">0${index + 1}</span><span>${tool.kind[state.lang]}</span></div>
+          <span class="name">${tool.name}${alt}</span>
+          <span class="desc">${tool.desc[state.lang]}</span>
+          <span class="card-foot"><span class="card-tags">${tool.tags[state.lang].map((tag) => `<span>${tag}</span>`).join("")}</span>
+            <span class="card-arrow" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M6 14 14 6M8 6h6v6" /></svg></span>
+          </span>
+        </div>
       </a>`;
   }).join("");
 
@@ -266,6 +332,9 @@ function render() {
 function applyTheme() {
   if (state.theme === "auto") delete document.documentElement.dataset.theme;
   else document.documentElement.dataset.theme = state.theme;
+  const isDark = state.theme !== "light";
+  document.querySelector('meta[name="theme-color"]').content = isDark ? "#071013" : "#f1eadb";
+  $("#themebtn").dataset.mode = state.theme;
 }
 
 document.addEventListener("click", (event) => {
@@ -273,12 +342,20 @@ document.addEventListener("click", (event) => {
   if (lang) { state.lang = lang.dataset.lang; store.set("lang", state.lang); render(); return; }
 
   if (event.target.closest("#themebtn")) {
-    const order = ["auto", "light", "dark"];
-    state.theme = order[(order.indexOf(state.theme) + 1) % order.length];
+    if (state.theme === "auto") state.theme = "light";
+    else state.theme = state.theme === "light" ? "dark" : "auto";
     store.set("theme", state.theme);
     applyTheme();
     render();
   }
+});
+
+document.addEventListener("pointermove", (event) => {
+  const card = event.target.closest(".card");
+  if (!card || event.pointerType === "touch") return;
+  const box = card.getBoundingClientRect();
+  card.style.setProperty("--mx", `${event.clientX - box.left}px`);
+  card.style.setProperty("--my", `${event.clientY - box.top}px`);
 });
 
 $("#verseshuffle").addEventListener("click", () => {
@@ -291,10 +368,25 @@ $("#verseshuffle").addEventListener("click", () => {
 $("#versecopy").addEventListener("click", async (event) => {
   const v = state.verse;
   const text = `${v[state.lang]}（${verseRef(v)}）`;
-  try { await navigator.clipboard.writeText(text); } catch (_) { return; }
+  try {
+    await navigator.clipboard.writeText(text);
+  } catch (_) {
+    const fallback = document.createElement("textarea");
+    fallback.value = text;
+    fallback.style.position = "fixed";
+    fallback.style.opacity = "0";
+    document.body.appendChild(fallback);
+    fallback.select();
+    document.execCommand("copy");
+    fallback.remove();
+  }
   const button = event.target;
   button.textContent = t().copied;
+  const toast = $("#toast");
+  toast.textContent = t().copied;
+  toast.classList.add("show");
   setTimeout(() => { button.textContent = t().copy; }, 1400);
+  setTimeout(() => { toast.classList.remove("show"); }, 1600);
 });
 
 /* -------------------------------------------------------------------- boot */
