@@ -28,3 +28,9 @@ Set `CHROME=` if Chrome is not in the usual place.
 
 和合本 and KJV, both public domain — which is exactly why those two are the
 translations sitting in this repo.
+
+## Licence
+
+[Apache License 2.0](LICENSE), copyright 2026 Jie Li, for the code. The verse
+text is public domain, as above. Keep the notice, state your changes, expect no
+warranty.
