@@ -208,6 +208,14 @@ const TOOLS = [
       zh: "在教会 Wi-Fi 上实时翻译讲道。访客扫码即可听到自己的语言并看到字幕；识别、翻译和语音合成都在一台 Mac 上本地运行，声音不出教会。",
       tw: "在教會 Wi-Fi 上即時翻譯講道。訪客掃描 QR Code 即可聽到自己的語言並看到字幕；辨識、翻譯和語音合成都在一台 Mac 上本地運行，聲音不出教會。",
       en: "Live sermon translation over church Wi-Fi. Visitors scan a QR code for translated audio and subtitles; recognition, translation, and speech all run locally on one Mac." } },
+  { id: "festival", url: "/festival-games/", name: "Festival Games", accent: "#d39a6b",
+    alt: { zh: "欢聚", tw: "歡聚", en: "" },
+    kind: { zh: "节日破冰", tw: "節日破冰", en: "FESTIVAL ICEBREAKERS" },
+    tags: { zh: ["4 个游戏", "投影即用"], tw: ["4 個遊戲", "投影即用"], en: ["4 games", "Projector-ready"] },
+    desc: {
+      zh: "给北美华人教会节日聚会的双语互动游戏：中秋抽卡、春节接福、元宵灯谜、家宴连线。一台接投影的电脑就能带，不收集任何参与者资料。",
+      tw: "給北美華人教會節日聚會的雙語互動遊戲：中秋抽卡、春節接福、元宵燈謎、家宴連線。一台接投影的電腦就能帶，不收集任何參與者資料。",
+      en: "Bilingual icebreakers for Chinese church festival gatherings: Mid-Autumn prompt cards, Lunar New Year blessings, Lantern Festival riddles, and a potluck bingo. One laptop and a projector, no sign-ups, no data kept." } },
 ];
 
 /* ------------------------------------------------------------------ state */
@@ -287,6 +295,13 @@ function toolVisual(tool) {
       <div class="translation-line past"><small>EN · PULPIT</small><p>“Turn with me to John chapter three.”</p><strong>${first}</strong></div>
       <div class="translation-line"><small>EN · PULPIT</small><p>“For God so loved the world, that he gave his only Son.”</p><strong>${second}</strong></div>
       <div class="translation-audio"><span>▶</span><span>PLAYING · ≈4S BEHIND</span></div>
+    </div></div>`;
+  }
+  if (tool.id === "festival") {
+    const prompt = state.lang === "en" ? "Who did you miss<br>this Mid-Autumn?" : state.lang === "tw" ? "今年中秋<br>你想念誰？" : "今年中秋<br>你想念谁？";
+    return `<div class="tool-window">${bar}<div class="slide-stage">
+      <div class="slide-rail"><span class="slide-thumb active"></span><span class="slide-thumb"></span><span class="slide-thumb"></span><span class="slide-thumb"></span></div>
+      <div class="slide-canvas"><span>${prompt}</span></div><span class="slide-cursor"></span>
     </div></div>`;
   }
   const lyric = state.lang === "en" ? "Be Thou my vision<br>O Lord of my heart" : state.lang === "tw" ? "成為我異象<br>懇求心中王" : "成为我异象<br>恳求心中王";

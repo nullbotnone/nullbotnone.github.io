@@ -4,9 +4,9 @@
   const cards = () => document.querySelectorAll("#tools .card");
   const click = (el) => el.dispatchEvent(new MouseEvent("click", { bubbles: true }));
 
-  ok("renders exactly the four tools", cards().length === 4, "got " + cards().length);
+  ok("renders exactly the five tools", cards().length === 5, "got " + cards().length);
   ok("links stay relative", Array.from(cards()).map((a) => a.getAttribute("href")).join(",")
-     === "/messiah-land-map/,/apostles-sea-map/,/worship-wiki/,/inplace-translation/");
+     === "/messiah-land-map/,/apostles-sea-map/,/worship-wiki/,/inplace-translation/,/festival-games/");
   ok("each opens a new tab",
      Array.from(cards()).every((a) => a.target === "_blank" && /noopener/.test(a.rel)));
   ok("outside links stay limited",
