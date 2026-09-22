@@ -213,9 +213,9 @@ const TOOLS = [
     kind: { zh: "节日破冰", tw: "節日破冰", en: "FESTIVAL ICEBREAKERS" },
     tags: { zh: ["4 个游戏", "投影即用"], tw: ["4 個遊戲", "投影即用"], en: ["4 games", "Projector-ready"] },
     desc: {
-      zh: "给北美华人教会节日聚会的双语互动游戏：中秋抽卡、春节接福、元宵灯谜、家宴连线。一台接投影的电脑就能带，不收集任何参与者资料。",
-      tw: "給北美華人教會節日聚會的雙語互動遊戲：中秋抽卡、春節接福、元宵燈謎、家宴連線。一台接投影的電腦就能帶，不收集任何參與者資料。",
-      en: "Bilingual icebreakers for Chinese church festival gatherings: Mid-Autumn prompt cards, Lunar New Year blessings, Lantern Festival riddles, and a potluck bingo. One laptop and a projector, no sign-ups, no data kept." } },
+      zh: "给北美华人教会节日聚会的互动游戏，简繁英三语可切换：中秋抽卡、春节接福、元宵灯谜、家宴连线。一台接投影的电脑就能带，不收集任何参与者资料。",
+      tw: "給北美華人教會節日聚會的互動遊戲，簡繁英三語可切換：中秋抽卡、春節接福、元宵燈謎、家宴連線。一台接投影的電腦就能帶，不收集任何參與者資料。",
+      en: "Icebreakers for Chinese church festival gatherings in Simplified, Traditional, and English: Mid-Autumn prompt cards, Lunar New Year blessings, Lantern Festival riddles, and a potluck bingo. One laptop and a projector, no sign-ups, no data kept." } },
 ];
 
 /* ------------------------------------------------------------------ state */
