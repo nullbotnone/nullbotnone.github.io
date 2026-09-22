@@ -1,4 +1,4 @@
-/* slashai.app -- the front door for the four tools built here. Static: no
+/* slashai.app -- the front door for the five tools built here. Static: no
    framework, no build step, no dependencies. */
 
 const LANGS = ["zh", "tw", "en"];
@@ -10,7 +10,7 @@ const UI = {
     eyebrow: "为基督徒而造的开源工具",
     tagline: "让信仰的故事，看得见、用得上。",
     herosub: "从圣经世界的山海，到主日敬拜的投影——我把技术做成简单、开放、随手可用的工具，服事教会，也帮助每一个认真探索信仰的人。",
-    navTools: "工具", navVerse: "今日经文", explore: "探索四个工具", source: "查看开源代码",
+    navTools: "工具", navVerse: "今日经文", explore: "探索五个工具", source: "查看开源代码",
     collection: "工具集", toolsHeading: "已经启程的作品", toolsIntro: "每一个项目都从真实的需要开始：更清楚地理解圣经，更专注地预备敬拜。无需账号，打开就能使用。",
     verseHeading: "今日经文", roadmap: "接下来", comingTitle: "更多，正在路上。", comingBody: "这不是一个完成的清单，而是一间持续工作的数字工坊。新的圣经学习与教会服事工具会陆续来到这里。", follow: "在 GitHub 关注进展",
     shuffle: "换一节", copy: "复制经文", copied: "已复制", open: "读上下文",
@@ -23,7 +23,7 @@ const UI = {
     eyebrow: "為基督徒而造的開源工具",
     tagline: "讓信仰的故事，看得見、用得上。",
     herosub: "從聖經世界的山海，到主日敬拜的投影——我把技術做成簡單、開放、隨手可用的工具，服事教會，也幫助每一個認真探索信仰的人。",
-    navTools: "工具", navVerse: "今日經文", explore: "探索四個工具", source: "查看開源程式碼",
+    navTools: "工具", navVerse: "今日經文", explore: "探索五個工具", source: "查看開源程式碼",
     collection: "工具集", toolsHeading: "已經啟程的作品", toolsIntro: "每一個項目都從真實的需要開始：更清楚地理解聖經，更專注地預備敬拜。無需帳號，打開就能使用。",
     verseHeading: "今日經文", roadmap: "接下來", comingTitle: "更多，正在路上。", comingBody: "這不是一個完成的清單，而是一間持續工作的數位工坊。新的聖經學習與教會服事工具會陸續來到這裡。", follow: "在 GitHub 關注進展",
     shuffle: "換一節", copy: "複製經文", copied: "已複製", open: "讀上下文",
@@ -36,7 +36,7 @@ const UI = {
     eyebrow: "Open-source tools for Christians",
     tagline: "See the story. Serve with better tools.",
     herosub: "From the mountains and seas of the biblical world to Sunday lyric slides—I turn technology into simple, open tools for churches and for anyone exploring faith with care.",
-    navTools: "Tools", navVerse: "Daily verse", explore: "Explore all four", source: "View the source",
+    navTools: "Tools", navVerse: "Daily verse", explore: "Explore all five", source: "View the source",
     collection: "The collection", toolsHeading: "Tools already in motion", toolsIntro: "Each project began with a real need: understand Scripture more clearly and prepare worship with less friction. No account required—just open and use.",
     verseHeading: "A verse for today", roadmap: "What’s next", comingTitle: "More is on the way.", comingBody: "This isn’t a finished list. It’s an active digital workshop, with more tools for Bible study and church ministry coming here over time.", follow: "Follow progress on GitHub",
     shuffle: "Another verse", copy: "Copy verse", copied: "Copied", open: "Read in context",
