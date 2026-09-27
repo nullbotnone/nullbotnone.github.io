@@ -6,7 +6,7 @@
 
   ok("renders exactly the six tools", cards().length === 6, "got " + cards().length);
   ok("links stay relative", Array.from(cards()).map((a) => a.getAttribute("href")).join(",")
-     === "/messiah-land-map/,/bible-wiki/,/apostles-sea-map/,/worship-wiki/,/festival-games/,/inplace-translation/");
+     === "/messiah-land-map/,/scripture-atlas/,/apostles-sea-map/,/worship-wiki/,/festival-games/,/inplace-translation/");
   ok("each opens a new tab",
      Array.from(cards()).every((a) => a.target === "_blank" && /noopener/.test(a.rel)));
   ok("outside links stay limited",

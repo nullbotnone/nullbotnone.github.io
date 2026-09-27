@@ -184,7 +184,7 @@ const TOOLS = [
       zh: "第一世纪以色列的地形图，高程取自实测数据。平移、俯仰，把福音书的叙事放回它真实的距离和高差里。",
       tw: "第一世紀以色列的地形圖，高程取自實測資料。平移、俯仰，把福音書的敘事放回它真實的距離和高差裡。",
       en: "A relief map of first-century Israel built on measured elevation data. Pan and tilt the land, and read the Gospels against the distances and drops they happened in." } },
-  { id: "atlas", url: "/bible-wiki/", name: "Scripture Atlas", accent: "#7aa99a",
+  { id: "atlas", url: "/scripture-atlas/", name: "Scripture Atlas", accent: "#7aa99a",
     alt: { zh: "经纬圣经", tw: "經緯聖經", en: "" },
     kind: { zh: "圣经关系图", tw: "聖經關係圖", en: "SCRIPTURE NETWORK" },
     tags: { zh: ["66 卷书", "经文关联"], tw: ["66 卷書", "經文關聯"], en: ["66 books", "Verse links"] },
