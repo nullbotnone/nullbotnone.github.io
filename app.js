@@ -1,4 +1,4 @@
-/* slashai.app -- the front door for the five tools built here. Static: no
+/* slashai.app -- the front door for the six tools built here. Static: no
    framework, no build step, no dependencies. */
 
 const LANGS = ["zh", "tw", "en"];
@@ -10,7 +10,7 @@ const UI = {
     eyebrow: "为基督徒而造的开源工具",
     tagline: "让信仰的故事，看得见、用得上。",
     herosub: "从圣经世界的山海，到主日敬拜的投影——我把技术做成简单、开放、随手可用的工具，服事教会，也帮助每一个认真探索信仰的人。",
-    navTools: "工具", navVerse: "今日经文", explore: "探索五个工具", source: "查看开源代码",
+    navTools: "工具", navVerse: "今日经文", explore: "探索六个工具", source: "查看开源代码",
     collection: "工具集", toolsHeading: "已经启程的作品", toolsIntro: "每一个项目都从真实的需要开始：更清楚地理解圣经，更专注地预备敬拜。无需账号，打开就能使用。",
     verseHeading: "今日经文", roadmap: "接下来", comingTitle: "更多，正在路上。", comingBody: "这不是一个完成的清单，而是一间持续工作的数字工坊。新的圣经学习与教会服事工具会陆续来到这里。", follow: "在 GitHub 关注进展",
     shuffle: "换一节", copy: "复制经文", copied: "已复制", open: "读上下文",
@@ -23,7 +23,7 @@ const UI = {
     eyebrow: "為基督徒而造的開源工具",
     tagline: "讓信仰的故事，看得見、用得上。",
     herosub: "從聖經世界的山海，到主日敬拜的投影——我把技術做成簡單、開放、隨手可用的工具，服事教會，也幫助每一個認真探索信仰的人。",
-    navTools: "工具", navVerse: "今日經文", explore: "探索五個工具", source: "查看開源程式碼",
+    navTools: "工具", navVerse: "今日經文", explore: "探索六個工具", source: "查看開源程式碼",
     collection: "工具集", toolsHeading: "已經啟程的作品", toolsIntro: "每一個項目都從真實的需要開始：更清楚地理解聖經，更專注地預備敬拜。無需帳號，打開就能使用。",
     verseHeading: "今日經文", roadmap: "接下來", comingTitle: "更多，正在路上。", comingBody: "這不是一個完成的清單，而是一間持續工作的數位工坊。新的聖經學習與教會服事工具會陸續來到這裡。", follow: "在 GitHub 關注進展",
     shuffle: "換一節", copy: "複製經文", copied: "已複製", open: "讀上下文",
@@ -36,7 +36,7 @@ const UI = {
     eyebrow: "Open-source tools for Christians",
     tagline: "See the story. Serve with better tools.",
     herosub: "From the mountains and seas of the biblical world to Sunday lyric slides—I turn technology into simple, open tools for churches and for anyone exploring faith with care.",
-    navTools: "Tools", navVerse: "Daily verse", explore: "Explore all five", source: "View the source",
+    navTools: "Tools", navVerse: "Daily verse", explore: "Explore all six", source: "View the source",
     collection: "The collection", toolsHeading: "Tools already in motion", toolsIntro: "Each project began with a real need: understand Scripture more clearly and prepare worship with less friction. No account required—just open and use.",
     verseHeading: "A verse for today", roadmap: "What’s next", comingTitle: "More is on the way.", comingBody: "This isn’t a finished list. It’s an active digital workshop, with more tools for Bible study and church ministry coming here over time.", follow: "Follow progress on GitHub",
     shuffle: "Another verse", copy: "Copy verse", copied: "Copied", open: "Read in context",
@@ -184,6 +184,14 @@ const TOOLS = [
       zh: "第一世纪以色列的地形图，高程取自实测数据。平移、俯仰，把福音书的叙事放回它真实的距离和高差里。",
       tw: "第一世紀以色列的地形圖，高程取自實測資料。平移、俯仰，把福音書的敘事放回它真實的距離和高差裡。",
       en: "A relief map of first-century Israel built on measured elevation data. Pan and tilt the land, and read the Gospels against the distances and drops they happened in." } },
+  { id: "atlas", url: "/bible-wiki/", name: "Scripture Atlas", accent: "#7aa99a",
+    alt: { zh: "经纬圣经", tw: "經緯聖經", en: "" },
+    kind: { zh: "圣经关系图", tw: "聖經關係圖", en: "SCRIPTURE NETWORK" },
+    tags: { zh: ["66 卷书", "经文关联"], tw: ["66 卷書", "經文關聯"], en: ["66 books", "Verse links"] },
+    desc: {
+      zh: "让经文之间的回声看得见。浏览整本圣经的交叉引用穹顶、比较书卷间的关系密度，并寻找两节经文之间的路径。",
+      tw: "讓經文之間的回聲看得見。瀏覽整本聖經的交叉引用穹頂、比較書卷間的關係密度，並尋找兩節經文之間的路徑。",
+      en: "See the echoes between verses. Explore an arc map of cross-references, compare connections between books, and trace a path from one passage to another." } },
   { id: "sea", url: "/apostles-sea-map/", name: "Apostles Sea Map", accent: "#91a89f",
     alt: { zh: "直到地极", tw: "直到地極", en: "" },
     kind: { zh: "使徒行程", tw: "使徒行程", en: "APOSTOLIC JOURNEYS" },
@@ -275,6 +283,11 @@ function renderVerse() {
 
 function toolVisual(tool) {
   const bar = `<div class="window-top"><i></i><i></i><i></i><span>${tool.name.toUpperCase()}</span></div>`;
+  if (tool.id === "atlas") {
+    const arches = [[15,575,17],[45,330,47],[76,510,92],[110,425,125],[143,560,162],[190,382,52],[244,535,138],[302,574,83],[352,488,113],[405,555,33],[465,581,118]]
+      .map(([a,b,h],i) => `<path d="M${a} 210Q${(a+b)/2} ${210-h*2} ${b} 210" stroke="${i%3===0?'#d4b66f':i%3===1?'#77ad9b':'#769bb4'}" opacity=".65"/>`).join("");
+    return `<div class="tool-window">${bar}<div class="mini-atlas"><svg viewBox="0 0 600 235" preserveAspectRatio="none" aria-hidden="true">${arches}<path d="M12 210H588" stroke="#d8cdb5" opacity=".8"/></svg><span>GENESIS <b>31,100 VERSES</b> REVELATION</span></div></div>`;
+  }
   if (tool.id === "land") {
     return `<div class="tool-window">${bar}<div class="mini-map">
       <span class="contour contour-a"></span><span class="contour contour-b"></span><span class="map-route"></span>
