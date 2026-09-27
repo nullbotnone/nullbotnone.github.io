@@ -208,14 +208,6 @@ const TOOLS = [
       zh: "给教会敬拜团队的歌词投影工具。建立并搜索曲库、自动分页、实时预览，导出 PowerPoint、Keynote 和 PDF。",
       tw: "給教會敬拜團隊的歌詞投影工具。建立並搜尋曲庫、自動分頁、即時預覽，匯出 PowerPoint、Keynote 和 PDF。",
       en: "Lyric slides for worship teams: build and search a song library, auto-paginate, preview live, and export PowerPoint, Keynote, and PDF." } },
-  { id: "translation", url: "/inplace-translation/", name: "InPlace Translation", featured: true, accent: "#d8bd79",
-    alt: { zh: "讲道翻译", tw: "講道翻譯", en: "" },
-    kind: { zh: "实时讲道翻译", tw: "即時講道翻譯", en: "LIVE SERMON TRANSLATION" },
-    tags: { zh: ["本地运行", "语音 + 字幕"], tw: ["本地運行", "語音 + 字幕"], en: ["Runs locally", "Voice + subtitles"] },
-    desc: {
-      zh: "在教会 Wi-Fi 上实时翻译讲道。访客扫码即可听到自己的语言并看到字幕；识别、翻译和语音合成都在一台 Mac 上本地运行，声音不出教会。",
-      tw: "在教會 Wi-Fi 上即時翻譯講道。訪客掃描 QR Code 即可聽到自己的語言並看到字幕；辨識、翻譯和語音合成都在一台 Mac 上本地運行，聲音不出教會。",
-      en: "Live sermon translation over church Wi-Fi. Visitors scan a QR code for translated audio and subtitles; recognition, translation, and speech all run locally on one Mac." } },
   { id: "festival", url: "/festival-games/", name: "Festival Games", accent: "#d39a6b",
     alt: { zh: "欢聚", tw: "歡聚", en: "" },
     kind: { zh: "节日破冰", tw: "節日破冰", en: "FESTIVAL ICEBREAKERS" },
@@ -224,6 +216,14 @@ const TOOLS = [
       zh: "给北美华人教会节日聚会的互动游戏，简繁英三语可切换：中秋抽卡、春节接福、元宵灯谜、家宴连线。一台接投影的电脑就能带，不收集任何参与者资料。",
       tw: "給北美華人教會節日聚會的互動遊戲，簡繁英三語可切換：中秋抽卡、春節接福、元宵燈謎、家宴連線。一台接投影的電腦就能帶，不收集任何參與者資料。",
       en: "Icebreakers for Chinese church festival gatherings in Simplified, Traditional, and English: Mid-Autumn prompt cards, Lunar New Year blessings, Lantern Festival riddles, and a potluck bingo. One laptop and a projector, no sign-ups, no data kept." } },
+  { id: "translation", url: "/inplace-translation/", name: "InPlace Translation", featured: true, accent: "#d8bd79",
+    alt: { zh: "讲道翻译", tw: "講道翻譯", en: "" },
+    kind: { zh: "实时讲道翻译", tw: "即時講道翻譯", en: "LIVE SERMON TRANSLATION" },
+    tags: { zh: ["本地运行", "语音 + 字幕"], tw: ["本地運行", "語音 + 字幕"], en: ["Runs locally", "Voice + subtitles"] },
+    desc: {
+      zh: "在教会 Wi-Fi 上实时翻译讲道。访客扫码即可听到自己的语言并看到字幕；识别、翻译和语音合成都在一台 Mac 上本地运行，声音不出教会。",
+      tw: "在教會 Wi-Fi 上即時翻譯講道。訪客掃描 QR Code 即可聽到自己的語言並看到字幕；辨識、翻譯和語音合成都在一台 Mac 上本地運行，聲音不出教會。",
+      en: "Live sermon translation over church Wi-Fi. Visitors scan a QR code for translated audio and subtitles; recognition, translation, and speech all run locally on one Mac." } },
 ];
 
 /* ------------------------------------------------------------------ state */
