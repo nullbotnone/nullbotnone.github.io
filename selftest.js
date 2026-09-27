@@ -17,12 +17,14 @@
   ok("switches to Simplified", /让信仰的故事/.test(document.getElementById("tagline").textContent));
   ok("html lang follows", document.documentElement.lang === "zh-CN", document.documentElement.lang);
   ok("card copy follows language", /第一世纪以色列/.test(document.getElementById("tools").textContent));
+  ok("preview labels follow language", /加利利/.test(document.querySelector(".mini-map").textContent) && /创世记/.test(document.querySelector(".mini-atlas").textContent));
   click(document.querySelector('#langseg button[data-lang="tw"]'));
   ok("switches to Traditional", /讓信仰的故事/.test(document.getElementById("tagline").textContent));
   ok("alt names follow language", /彌賽亞之地/.test(document.getElementById("tools").textContent));
   click(document.querySelector('#langseg button[data-lang="en"]'));
   ok("switches to English", /See the story/.test(document.getElementById("tagline").textContent));
   ok("alt names drop in English", !/弥赛亚|彌賽亞/.test(document.getElementById("tools").textContent));
+  ok("preview labels in English", /GALILEE/.test(document.querySelector(".mini-map").textContent) && /LISTENING/.test(document.querySelector(".translation-stage").textContent));
   ok("language persisted", JSON.parse(localStorage.getItem("slashai.lang")) === "en");
 
   const verse = document.getElementById("versetext").textContent;

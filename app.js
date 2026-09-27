@@ -281,33 +281,50 @@ function renderVerse() {
 
 /* ----------------------------------------------------------------- render */
 
+/* Labels inside the mini previews, so they switch language with the card. */
+const VIS = {
+  zh: { land: ["加利利", "犹太", "撒马利亚"], sea: ["安提阿", "罗马", "以弗所"], atlas: ["创世记", "节", "启示录"],
+        live: "直播", listening: "24 人在听", pulpit: "英文 · 讲台", playing: "播放中 · 约晚 4 秒" },
+  tw: { land: ["加利利", "猶太", "撒馬利亞"], sea: ["安提阿", "羅馬", "以弗所"], atlas: ["創世記", "節", "啟示錄"],
+        live: "直播", listening: "24 人在聽", pulpit: "英文 · 講台", playing: "播放中 · 約晚 4 秒" },
+  en: { land: ["GALILEE", "JUDEA", "SAMARIA"], sea: ["ANTIOCH", "ROME", "EPHESUS"], atlas: ["GENESIS", "VERSES", "REVELATION"],
+        live: "LIVE", listening: "24 LISTENING", pulpit: "ZH · PULPIT", playing: "PLAYING · ≈4S BEHIND" },
+};
+// The pulpit speaks one language and the listener hears another: English in, Chinese out,
+// or Chinese in, English out when the page itself is in English.
+const SERMON = [
+  { en: "Turn with me to John chapter three.", zh: "请和我一起翻到约翰福音第三章。", tw: "請和我一起翻到約翰福音第三章。" },
+  { en: "For God so loved the world, that he gave his only Son.", zh: "神爱世人，甚至将他的独生子赐给他们。", tw: "神愛世人，甚至將他的獨生子賜給他們。" },
+];
+
 function toolVisual(tool) {
-  const bar = `<div class="window-top"><i></i><i></i><i></i><span>${tool.name.toUpperCase()}</span></div>`;
+  const vis = VIS[state.lang];
+  const bar = `<div class="window-top"><i></i><i></i><i></i><span>${(tool.alt[state.lang] || tool.name).toUpperCase()}</span></div>`;
   if (tool.id === "atlas") {
     const arches = [[15,575,17],[45,330,47],[76,510,92],[110,425,125],[143,560,162],[190,382,52],[244,535,138],[302,574,83],[352,488,113],[405,555,33],[465,581,118]]
       .map(([a,b,h],i) => `<path d="M${a} 210Q${(a+b)/2} ${210-h*2} ${b} 210" stroke="${i%3===0?'#d4b66f':i%3===1?'#77ad9b':'#769bb4'}" opacity=".65"/>`).join("");
-    return `<div class="tool-window">${bar}<div class="mini-atlas"><svg viewBox="0 0 600 235" preserveAspectRatio="none" aria-hidden="true">${arches}<path d="M12 210H588" stroke="#d8cdb5" opacity=".8"/></svg><span>GENESIS <b>31,100 VERSES</b> REVELATION</span></div></div>`;
+    return `<div class="tool-window">${bar}<div class="mini-atlas"><svg viewBox="0 0 600 235" preserveAspectRatio="none" aria-hidden="true">${arches}<path d="M12 210H588" stroke="#d8cdb5" opacity=".8"/></svg><span>${vis.atlas[0]} <b>${new Intl.NumberFormat(t().htmlLang).format(31100)} ${vis.atlas[1]}</b> ${vis.atlas[2]}</span></div></div>`;
   }
   if (tool.id === "land") {
     return `<div class="tool-window">${bar}<div class="mini-map">
       <span class="contour contour-a"></span><span class="contour contour-b"></span><span class="map-route"></span>
-      <span class="map-label one">GALILEE</span><span class="map-label two">JUDEA</span><span class="map-label three">SAMARIA</span>
+      <span class="map-label one">${vis.land[0]}</span><span class="map-label two">${vis.land[1]}</span><span class="map-label three">${vis.land[2]}</span>
     </div></div>`;
   }
   if (tool.id === "sea") {
     return `<div class="tool-window">${bar}<div class="mini-sea">
       <span class="sea-coast a"></span><span class="sea-coast b"></span><span class="sea-route"></span>
-      <span class="map-label one">ANTIOCH</span><span class="map-label two">ROME</span><span class="map-label three">EPHESUS</span>
+      <span class="map-label one">${vis.sea[0]}</span><span class="map-label two">${vis.sea[1]}</span><span class="map-label three">${vis.sea[2]}</span>
     </div></div>`;
   }
   if (tool.id === "translation") {
-    const first = state.lang === "en" ? "Turn with me to John chapter three." : state.lang === "tw" ? "請和我一起翻到約翰福音第三章。" : "请和我一起翻到约翰福音第三章。";
-    const second = state.lang === "en" ? "For God so loved the world, that he gave his only Son." : state.lang === "tw" ? "神愛世人，甚至將他的獨生子賜給他們。" : "神爱世人，甚至将他的独生子赐给他们。";
+    const [heard, said] = state.lang === "en" ? ["en", "zh"] : [state.lang, "en"];
+    const line = (s, past) => `<div class="translation-line${past ? " past" : ""}"><small>${vis.pulpit}</small><p>“${s[said]}”</p><strong>${s[heard]}</strong></div>`;
     return `<div class="tool-window">${bar}<div class="translation-stage">
-      <div class="translation-top"><span class="translation-live"><i></i> LIVE</span><span>24 LISTENING</span></div>
-      <div class="translation-line past"><small>EN · PULPIT</small><p>“Turn with me to John chapter three.”</p><strong>${first}</strong></div>
-      <div class="translation-line"><small>EN · PULPIT</small><p>“For God so loved the world, that he gave his only Son.”</p><strong>${second}</strong></div>
-      <div class="translation-audio"><span>▶</span><span>PLAYING · ≈4S BEHIND</span></div>
+      <div class="translation-top"><span class="translation-live"><i></i> ${vis.live}</span><span>${vis.listening}</span></div>
+      ${line(SERMON[0], true)}
+      ${line(SERMON[1], false)}
+      <div class="translation-audio"><span>▶</span><span>${vis.playing}</span></div>
     </div></div>`;
   }
   if (tool.id === "festival") {
