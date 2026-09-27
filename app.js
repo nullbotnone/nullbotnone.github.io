@@ -189,9 +189,9 @@ const TOOLS = [
     kind: { zh: "圣经关系图", tw: "聖經關係圖", en: "SCRIPTURE NETWORK" },
     tags: { zh: ["66 卷书", "经文关联"], tw: ["66 卷書", "經文關聯"], en: ["66 books", "Verse links"] },
     desc: {
-      zh: "让经文之间的回声看得见。浏览整本圣经的交叉引用穹顶、比较书卷间的关系密度，并寻找两节经文之间的路径。",
-      tw: "讓經文之間的回聲看得見。瀏覽整本聖經的交叉引用穹頂、比較書卷間的關係密度，並尋找兩節經文之間的路徑。",
-      en: "See the echoes between verses. Explore an arc map of cross-references, compare connections between books, and trace a path from one passage to another." } },
+      zh: "让经文之间的回声看得见。浏览整本圣经的交叉引用穹顶、比较书卷间的关系密度，并寻找两节经文之间的路径。简繁英三语切换，经文随之换成和合本简体、繁体或 KJV。",
+      tw: "讓經文之間的回聲看得見。瀏覽整本聖經的交叉引用穹頂、比較書卷間的關係密度，並尋找兩節經文之間的路徑。簡繁英三語切換，經文隨之換成和合本簡體、繁體或 KJV。",
+      en: "See the echoes between verses. Explore an arc map of cross-references, compare connections between books, and trace a path from one passage to another. In Simplified, Traditional, or English, with the verses in the matching CUV or KJV text." } },
   { id: "sea", url: "/apostles-sea-map/", name: "Apostles Sea Map", accent: "#91a89f",
     alt: { zh: "直到地极", tw: "直到地極", en: "" },
     kind: { zh: "使徒行程", tw: "使徒行程", en: "APOSTOLIC JOURNEYS" },
